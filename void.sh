@@ -50,7 +50,7 @@ sleep 1
 
 # Install the X Window System
 
-read -p "Do you want to use a graphical environment? " xwinsys
+read -p "Do you want to use a graphical environment? (yes/no) " xwinsys
 case $xwinsys in
 	yes )
 
@@ -84,6 +84,7 @@ case $xwinsys in
 	- 6 Cinnamon
 	- 7 LXQt
 	- 8 Enlightenment
+	- 9 LXDE
 	- 0 none\n"
 
 	read -p "Which Desktop environment do you want? " desktop
@@ -100,7 +101,7 @@ case $xwinsys in
 			xfce4-session xfce4-settings xfce4-systemload-plugin xfce4-taskmanager xfce4-terminal \
 			xfce4-timer-plugin xfce4-verve-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin \
 			Thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin ristretto parole \
-			engrampa mousepad xfwm4 xfdesktop lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
+			xarchiver mousepad xfwm4 xfdesktop lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
 			zathura zathura-pdf-poppler gvfs gvfs-mtp gvfs-gphoto2 xfce-polkit
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -117,7 +118,7 @@ case $xwinsys in
 			mate-settings-daemon mate-system-monitor mate-terminal mate-themes mate-tweak mate-utils \
 			mozo pluma parole caja caja-image-converter caja-sendto caja-open-terminal caja-wallpaper \
 			caja-xattr-tags eom atril lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
-			gvfs gvfs-mtp gvfs-gphoto2
+			gvfs gvfs-mtp gvfs-gphoto2 engrampa
 		
 		echo "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -131,7 +132,7 @@ case $xwinsys in
 			gnome-disk-utility nautilus nautilus-sendto gvfs gvfs-mtp gvfs-gphoto2 totem eog eog-plugins \
 			evince gedit gedit-plugins gnome-video-effects gnome-themes-extra gnome-session gnome-screenshot \
 			gnome-shell-extensions gnome-icon-theme gnome-icon-theme-extras gnome-icon-theme-symbolic \
-			gnome-backgrounds
+			gnome-backgrounds file-roller
 					
 		echo "\n${BLUE}GNOME Applications${DEFAULT}\n"
 		echo "Includes: GNOME Calendar, GNOME Clocks, GNOME Weather, Evolution, GNOME Font Viewer,"
@@ -166,7 +167,7 @@ case $xwinsys in
 		xbps-install -S plasma-desktop plasma-disks plasma-thunderbolt plasma-systemmonitor plasma-pa plasma-nm \
 			plasma-firewall plasma-browser-integration plasma-vault latte-dock oxygen kdegraphics-thumbnailers \
 			dolphin dolphin-plugins kate5 konsole okular gwenview ark sddm sddm-kcm yakuake spectacle \
-			partitionmanager
+			partitionmanager ffmpegthumbs
 
 		echo "\n${BLUE}KDE Applications${DEFAULT}\n"
 		echo "Includes: KMail, Kontact, KOrganizer, KAddressbook, Akregator, Konversation, KCalc, KCharSelect\n"
@@ -199,7 +200,7 @@ case $xwinsys in
 		xbps-install -S budgie-desktop gnome-control-center gnome-system-monitor gnome-terminal nautilus \
 			nautilus-sendto gnome-keyring lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
 			evince gedit gedit-plugins eog eog-plugins parole gnome-screenshot gnome-disk-utility \
-			gvfs gvfs-mtp gvfs-gphoto2
+			gvfs gvfs-mtp gvfs-gphoto2 file-roller
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -211,7 +212,7 @@ case $xwinsys in
 
 		xbps-install -S cinnamon gnome-system-monitor gnome-terminal gnome-screenshot gnome-disk-utility \
 			gnome-keyring gedit gedit-plugins evince gvfs gvfs-mtp gvfs-gphoto2 parole lightdm lightdm-gtk3-greeter \
-			lightdm-gtk-greeter-settings eog eog-plugins
+			lightdm-gtk-greeter-settings eog eog-plugins file-roller
 		
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -236,6 +237,19 @@ case $xwinsys in
 		xbps-install -S enlightenment terminology mousepad gvfs gvfs-mtp gvfs-gphoto2 parole zathura zathura-pdf-poppler \
 			Thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+
+		;;
+
+		9 )
+
+		echo "\n${BLUE}Install LXDE...${DEFAULT}\n"
+
+		xbps-install -S lxde-common lxde-icon-theme lxappearance lxinput lxpanel lxrandr lxsession lxtask \
+			lxterminal pcmanfm gvfs gvfs-mtp gvfs-gphoto2 viewnior lightdm lightdm-gtk3-greeter \
+			lightdm-gtk-greeter-settings mousepad parole zathura zathura-pdf-poppler openbox obconf \
+			lxappearance-obconf
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 

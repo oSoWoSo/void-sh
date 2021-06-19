@@ -34,3 +34,12 @@ Sun 13 Jun 2021
 
 - Added the possibility to install some GNOME applications
 - Added the possibility to install some KDE applications
+
+Version 3.2 <br>
+Sat 19 Jun 2021
+
+- Added package engrampa to MATE
+- Replaced engrampa with xarchiver package for Xfce
+- Added LXDE desktop
+- Added file-roller to GNOME, Budgie and Cinnamon
+- Added package ffmpegthumbs to KDE Plasma to display video thumbnails in Dolphin
