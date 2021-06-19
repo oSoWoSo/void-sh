@@ -8,7 +8,7 @@ void-sh is a small program that configures Void Linux.
 - Install development packages
 - Install the X Window System (1/9) (optional)
 - Install a Desktop environment (2/9) (optional)
-    - Xfce, MATE, GNOME, KDE Plasma, Budgie, Cinnamon, LXQt, Enlightenment
+    - Xfce, MATE, GNOME, KDE Plasma, Budgie, Cinnamon, LXQt, Enlightenment, LXDE
 - Install a Window manager (3/9) (optional)
     - i3wm, Openbox, Fluxbox, bspwm, herbstluftwm, IceWM, jwm, dwm
 - Install fonts (4/9) (optional)
