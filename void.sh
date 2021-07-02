@@ -224,7 +224,8 @@ case $xwinsys in
 
 		xbps-install -S lxqt-about lxqt-admin lxqt-archiver lxqt-build-tools lxqt-config lxqt-globalkeys lxqt-notificationd \
 			lxqt-openssh-askpass lxqt-panel lxqt-policykit lxqt-powermanagement lxqt-qtplugin lxqt-runner lxqt-session \
-			lxqt-sudo lxqt-themes obconf-qt openbox pcmanfm-qt lximage-qt FeatherPad qlipper sddm
+			lxqt-sudo lxqt-themes obconf-qt openbox pcmanfm-qt lximage-qt FeatherPad qlipper lightdm lightdm-gtk3-greeter \
+			lightdm-gtk-greeter-settings qterminal
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -544,7 +545,7 @@ case $xwinsys in
 		echo "\n${BLUE}Enable libvirtd service...${DEFAULT}\n"
 
 		if [ -L /var/service/libvirtd ]; then
-			echo "Service ${GREEN}libvirtd ${DEFAULT}already exist. Continue.\n"
+			echo "\nService ${GREEN}libvirtd ${DEFAULT}already exist. Continue.\n"
 		else
 			ln -sv /etc/sv/libvirtd /var/service
 			echo "\n${GREEN}Done${DEFAULT}\n"
@@ -565,28 +566,28 @@ case $xwinsys in
 
 	echo "\n${BLUE}Enable required services...${DEFAULT}\n"
 
-	xbps-install -S dbus
+	xbps-install -Sy dbus
 
 	if [ -L /var/service/dbus ]; then
-		echo "Service ${GREEN}dbus ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}dbus ${DEFAULT}already exist. Continue.\n"
 	else
-		ln -sv /etc/sv/dbus /var/service
+		ln -s /etc/sv/dbus /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
-	xbps-install -S elogind
+	xbps-install -Sy elogind
 
 	if [ -L /var/service/elogind ]; then
-		echo "Service ${GREEN}elogind ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}elogind ${DEFAULT}already exist. Continue.\n"
 	else
-		ln -sv /etc/sv/elogind /var/service
+		ln -s /etc/sv/elogind /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
 	fi
 	
 	if [ -L /var/service/polkitd ]; then
-		echo "Service ${GREEN}polkitd ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}polkitd ${DEFAULT}already exist. Continue.\n"
 	else
-		ln -sv /etc/sv/polkitd /var/service
+		ln -s /etc/sv/polkitd /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
@@ -606,12 +607,12 @@ sleep 1
 echo "\n${BLUE}Configure Cron...${DEFAULT}\n"
 echo "\nInstall cronie...\n"
 
-xbps-install -S cronie
+xbps-install -Sy cronie
 
 echo "\n${BLUE}Enable cronie service...${DEFAULT}\n"
 
 if [ -L /var/service/cronie ]; then
-	echo "Service ${GREEN}cronie ${DEFAULT}already exist. Continue.\n"
+	echo "\nService ${GREEN}cronie ${DEFAULT}already exist. Continue.\n"
 else
 	ln -sv /etc/sv/cronie /var/service
 	echo "\n${GREEN}Done${DEFAULT}\n"
@@ -639,7 +640,7 @@ case $netmngt in
 	echo "\n${BLUE}Enable Network Manager service...${DEFAULT}\n"
 
 	if [ -L /var/service/NetworkManager ]; then
-		echo "Service ${GREEN}NetworkManager ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}NetworkManager ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/NetworkManager /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -656,7 +657,7 @@ case $netmngt in
 	echo "\n${BLUE}Enable Connman service...${DEFAULT}\n"
 
 	if [ -L /var/service/connmand ]; then
-		echo "Service ${GREEN}connmand ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}connmand ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/connmand /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -686,7 +687,7 @@ case $bluetooth in
 	echo "\n${BLUE}Enable Bluetooth service...${DEFAULT}\n"
 
 	if [ -L /var/service/bluetoothd ]; then
-		echo "Service ${GREEN}bluetoothd ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}bluetoothd ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/bluetoothd /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -717,7 +718,7 @@ case $printer in
 	echo "\n${BLUE}Enable CUPS service...${DEFAULT}\n"
 
 	if [ -L /var/service/cupsd ]; then
-		echo "Service ${GREEN}cupsd ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}cupsd ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/cupsd /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -747,7 +748,7 @@ case $nb_power in
 	echo "\n${BLUE}Enable TLP service...${DEFAULT}\n"
 
 	if [ -L /var/service/tlp ]; then
-		echo "Service ${GREEN}tlp ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}tlp ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/tlp /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -774,6 +775,8 @@ elif [ -f /usr/bin/sddm ]; then
 	ln -sv /etc/sv/sddm /var/service
 elif [ -f /usr/bin/gdm ]; then
 	ln -sv /etc/sv/gdm /var/service
+elif [ -f /usr/bin/slim ]; then
+	ln -sv /etc/sv/slim /var/service
 fi
 
 echo "\n${BLUE}Finished.${DEFAULT}\n"

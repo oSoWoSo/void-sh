@@ -43,3 +43,10 @@ Sat 19 Jun 2021
 - Added LXDE desktop
 - Added file-roller to GNOME, Budgie and Cinnamon
 - Added package ffmpegthumbs to KDE Plasma to display video thumbnails in Dolphin
+
+Version 3.3 <br>
+Fri 02 Jul 2021
+
+- Replaced sddm with lightdm for LXQt
+- Added qterminal to LXQt
+- Some improvements in text output
