@@ -1,6 +1,6 @@
 # void.sh
 
-void-sh is a small program that configures Void Linux.
+void-sh is a program written in Bash that configures Void Linux.
 
 ### Content
 
