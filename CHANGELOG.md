@@ -50,3 +50,14 @@ Fri 02 Jul 2021
 - Replaced sddm with lightdm for LXQt
 - Added qterminal to LXQt
 - Some improvements in text output
+
+Version 4.0 <br>
+Sat 31 Jul 2021
+
+- Added missing package kde-gtk-config5 to KDE Plasma
+- Added possibility to install KDE Connect
+- Added FVWM3 window manager
+- Added missing Audio support install option
+- Added install option for terminal emulators
+- Added package bash-completion to recommended packages
+- Added package neofetch to xorg installation

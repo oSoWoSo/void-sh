@@ -3,20 +3,22 @@
 #
 # - Install recommended packages
 # - Install development packages
-# - Install the X Window System (1/9)
-# - Install a Desktop environment (2/9)
-# - Install a Window manager (3/9)
-# - Install fonts (4/9)
-# - Install an internet browser (5/9)
-# - Install LibreOffice (6/9)
-# - Install GIMP + Inkscape (7/9)
-# - Install QEMU + Virt Manager (8/9)
-# - Enable required services (9/9)
+# - Install the X Window System (1/10)
+# - Install a Desktop environment (2/10)
+# - Install a Window manager (3/10)
+# - Install fonts (4/10)
+# - Install an internet browser (5/10)
+# - Install LibreOffice (6/10)
+# - Install GIMP + Inkscape (7/10)
+# - Install QEMU + Virt Manager (8/10)
+# - Install a Terminal emulator (9/10)
+# - Enable required services (10/10)
 # - Configure Cron
+# - Configure Audio
 # - Configure Network Manager
 # - Configure Bluetooth
 # - Configure Printing support
-# - Configure Notebook Power Options
+# - Configure TLP for notebook power saving
 # - Configure the Display manager
 #
 
@@ -32,7 +34,7 @@ DEFAULT='\033[00m'
 echo "\n${BLUE}Install recommended packages...${DEFAULT}\n"
 
 xbps-install -S curl wget unzip zip nano vim gptfdisk mtools mlocate \
-	ntfs-3g fuse-exfat
+	ntfs-3g fuse-exfat bash-completion
 
 echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -57,7 +59,7 @@ case $xwinsys in
 	echo "\n${BLUE}Install the X Window System...${DEFAULT}\n"
 
 	xbps-install -S xorg-server xorg-server-xwayland xorg-video-drivers xorg-input-drivers \
-		xinit xauth xrandr xrdb xwininfo xdpyinfo xsetroot
+		xinit xauth xrandr xrdb xwininfo xdpyinfo xsetroot neofetch
 
 	echo "\n${BLUE}Copy configurations...${DEFAULT}\n"
 
@@ -167,7 +169,7 @@ case $xwinsys in
 		xbps-install -S plasma-desktop plasma-disks plasma-thunderbolt plasma-systemmonitor plasma-pa plasma-nm \
 			plasma-firewall plasma-browser-integration plasma-vault latte-dock oxygen kdegraphics-thumbnailers \
 			dolphin dolphin-plugins kate5 konsole okular gwenview ark sddm sddm-kcm yakuake spectacle \
-			partitionmanager ffmpegthumbs
+			partitionmanager ffmpegthumbs kde-gtk-config5
 
 		echo "\n${BLUE}KDE Applications${DEFAULT}\n"
 		echo "Includes: KMail, Kontact, KOrganizer, KAddressbook, Akregator, Konversation, KCalc, KCharSelect\n"
@@ -179,6 +181,23 @@ case $xwinsys in
 			echo "\n${BLUE}Install KDE applications...${DEFAULT}\n"
 
 			xbps-install -S kmail kontact korganizer kaddressbook akregator konversation kcalc kcharselect
+
+			;;
+
+			no )
+
+			continue
+
+			;;
+		esac
+
+		read -p "Do you want to use KDE Connect? (yes/no) " kdeconnect
+		case $kdeconnect in
+			yes )
+
+			echo "\n${BLUE}Install KDE Connect...${DEFAULT}\n"
+
+			xbps-install -S kdeconnect
 
 			;;
 
@@ -269,7 +288,7 @@ case $xwinsys in
 	
 	echo "\n${BLUE}Install a Window Manager...${DEFAULT}\n"
 	echo "Possible (type in number): \n
-	- 1 i3wm
+	- 1 i3-gaps
 	- 2 Openbox
 	- 3 Fluxbox
 	- 4 bspwm
@@ -277,13 +296,14 @@ case $xwinsys in
 	- 6 IceWM
 	- 7 jwm
 	- 8 dwm
+	- 9 FVWM3
 	- 0 none\n"
 
 	read -p "Which Window manager do you want? " windowmanager
 	case $windowmanager in
 		1 ) 
 
-		echo "\n${BLUE}Install i3...${DEFAULT}\n"
+		echo "\n${BLUE}Install i3-gaps...${DEFAULT}\n"
 
 		xbps-install -S i3-gaps i3lock i3status i3blocks dunst dmenu feh Thunar \
 			thunar-volman thunar-archive-plugin thunar-media-tags-plugin xarchiver \
@@ -303,7 +323,7 @@ case $xwinsys in
 			feh lxterminal lxrandr lxinput pcmanfm gvfs gvfs-mtp gvfs-gphoto2 \
 			mousepad lxtask scrot htop xarchiver lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings viewnior
-		
+
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
@@ -373,6 +393,18 @@ case $xwinsys in
 		echo "\n${BLUE}Install dwm...${DEFAULT}\n"
 
 		xbps-install -S dwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
+			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+
+		;;
+
+		9 )
+
+		echo "\n${BLUE}Install FVWM3...${DEFAULT}\n"
+
+		xbps-install -S fvwm3 feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
 			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
 
@@ -562,6 +594,78 @@ case $xwinsys in
 
 	sleep 1
 
+	# Install a Terminal emulator
+
+	echo "\n${BLUE}Install a Terminal emulator...${DEFAULT}\n"
+	echo "Possible (type in number): \n
+	- 1 Alacritty
+	- 2 xterm
+	- 3 LXTerminal
+	- 4 Yakuake
+	- 5 Sakura
+	- 0 I take the given one\n"
+
+	read -p "What terminal emulator do you want? " terminal
+	case $terminal in
+		1 ) 
+
+		echo "\n${BLUE}Install Alacritty...${DEFAULT}\n"
+
+		xbps-install -S alacritty alacritty-terminfo
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+			
+		;;
+		
+		2 ) 
+
+		echo "\n${BLUE}Install xterm...${DEFAULT}\n"
+
+		xbps-install -S xterm
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+			
+		;;
+		
+		3 ) 
+		
+		echo "\n${BLUE}Install LXTerminal...${DEFAULT}\n"
+
+		xbps-install -S lxterminal
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+			
+		;;
+
+		4 )
+		
+		echo "\n${BLUE}Install Yakuake...${DEFAULT}\n"
+
+		xbps-install -S yakuake
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+
+		;;
+
+		5 )
+		
+		echo "\n${BLUE}Install Sakura...${DEFAULT}\n"
+
+		xbps-install -S sakura
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+
+		;;
+
+		0 )
+
+		continue
+
+		;;
+	esac
+
+	sleep 1
+
 	# Enable required services
 
 	echo "\n${BLUE}Enable required services...${DEFAULT}\n"
@@ -619,6 +723,28 @@ else
 fi
 
 sleep 1
+
+# Configure Audio
+
+read -p "Do you want to install PulseAudio for audio? (yes/no) " pulseaudio
+case $pulseaudio in
+	yes )
+
+	echo "\n${BLUE}Install PulseAudio...${DEFAULT}\n"
+
+	xbps-install -S pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio \
+		pavucontrol
+
+	echo "\n${GREEN}Done${DEFAULT}\n"
+
+	;;
+
+	no )
+
+	continue
+
+	;;
+esac
 
 # Configure Network Management
 
@@ -737,7 +863,7 @@ sleep 1
 
 # Configure Notebook Power Saving
 
-read -p "Do you want to configure TLP for power saving (Notebooks only)? (yes/no) " nb_power
+read -p "Do you want to install TLP for power saving (Notebooks only)? (yes/no) " nb_power
 case $nb_power in
 	yes )
 
