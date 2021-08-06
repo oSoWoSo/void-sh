@@ -120,7 +120,7 @@ case $xwinsys in
 			mate-settings-daemon mate-system-monitor mate-terminal mate-themes mate-tweak mate-utils \
 			mozo pluma parole caja caja-image-converter caja-sendto caja-open-terminal caja-wallpaper \
 			caja-xattr-tags eom atril lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
-			gvfs gvfs-mtp gvfs-gphoto2 engrampa
+			gvfs gvfs-mtp gvfs-gphoto2 engrampa mate-power-manager mate-polkit
 		
 		echo "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -256,7 +256,7 @@ case $xwinsys in
 
 		xbps-install -S enlightenment terminology mousepad gvfs gvfs-mtp gvfs-gphoto2 parole zathura zathura-pdf-poppler \
 			Thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin lightdm lightdm-gtk3-greeter \
-			lightdm-gtk-greeter-settings
+			lightdm-gtk-greeter-settings xarchiver
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -269,7 +269,7 @@ case $xwinsys in
 		xbps-install -S lxde-common lxde-icon-theme lxappearance lxinput lxpanel lxrandr lxsession lxtask \
 			lxterminal pcmanfm gvfs gvfs-mtp gvfs-gphoto2 viewnior lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings mousepad parole zathura zathura-pdf-poppler openbox obconf \
-			lxappearance-obconf
+			lxappearance-obconf xarchiver
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -462,7 +462,7 @@ case $xwinsys in
 
 		echo "\n${BLUE}Install Firefox...${DEFAULT}\n"
 
-		xbps-install -S firefox firefox-i18n-en-US
+		xbps-install -S firefox firefox-i18n-en-US firefox-i18n-de
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -472,7 +472,7 @@ case $xwinsys in
 
 		echo "\n${BLUE}Install Firefox Extended Support Release...${DEFAULT}\n"
 
-		xbps-install -S firefox-esr firefox-esr-i18n-en-US
+		xbps-install -S firefox-esr firefox-esr-i18n-en-US firefox-esr-i18n-de
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -526,7 +526,8 @@ case $xwinsys in
 		echo "\n${BLUE}Install LibreOffice...${DEFAULT}\n"
 
 		xbps-install -S libreoffice-writer libreoffice-calc libreoffice-impress \
-			libreoffice-draw libreoffice-math libreoffice-base libreoffice-gnome
+			libreoffice-draw libreoffice-math libreoffice-base libreoffice-gnome \
+			libreoffice-i18n-en-US libreoffice-i18n-de
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 

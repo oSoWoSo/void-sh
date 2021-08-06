@@ -61,3 +61,11 @@ Sat 31 Jul 2021
 - Added install option for terminal emulators
 - Added package bash-completion to recommended packages
 - Added package neofetch to xorg installation
+
+Version 4.1 <br>
+Fri 06 Apr 2021
+
+- Added mate-polkit and mate-power-manager to MATE setup
+- Added xarchiver to Enlightenment and LXDE setup
+- Added German language pack to Firefox and Firefox ESR setup
+- Added German and American English language pack to LibreOffice setup
