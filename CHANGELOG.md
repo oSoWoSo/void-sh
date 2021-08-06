@@ -63,7 +63,7 @@ Sat 31 Jul 2021
 - Added package neofetch to xorg installation
 
 Version 4.1 <br>
-Fri 06 Apr 2021
+Fri 06 Aug 2021
 
 - Added mate-polkit and mate-power-manager to MATE setup
 - Added xarchiver to Enlightenment and LXDE setup
