@@ -3,20 +3,22 @@
 #
 # - Install recommended packages
 # - Install development packages
-# - Install the X Window System (1/9)
-# - Install a Desktop environment (2/9)
-# - Install a Window manager (3/9)
-# - Install fonts (4/9)
-# - Install an internet browser (5/9)
-# - Install LibreOffice (6/9)
-# - Install GIMP + Inkscape (7/9)
-# - Install QEMU + Virt Manager (8/9)
-# - Enable required services (9/9)
+# - Install the X Window System (1/10)
+# - Install a Desktop environment (2/10)
+# - Install a Window manager (3/10)
+# - Install fonts (4/10)
+# - Install an internet browser (5/10)
+# - Install LibreOffice (6/10)
+# - Install GIMP + Inkscape (7/10)
+# - Install QEMU + Virt Manager (8/10)
+# - Install a Terminal emulator (9/10)
+# - Enable required services (10/10)
 # - Configure Cron
+# - Configure Audio
 # - Configure Network Manager
 # - Configure Bluetooth
 # - Configure Printing support
-# - Configure Notebook Power Options
+# - Configure TLP for notebook power saving
 # - Configure the Display manager
 #
 
@@ -32,7 +34,7 @@ DEFAULT='\033[00m'
 echo "\n${BLUE}Install recommended packages...${DEFAULT}\n"
 
 xbps-install -S curl wget unzip zip nano vim gptfdisk mtools mlocate \
-	ntfs-3g fuse-exfat
+	ntfs-3g fuse-exfat bash-completion
 
 echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -50,14 +52,14 @@ sleep 1
 
 # Install the X Window System
 
-read -p "Do you want to use a graphical environment? " xwinsys
+read -p "Do you want to use a graphical environment? (yes/no) " xwinsys
 case $xwinsys in
 	yes )
 
 	echo "\n${BLUE}Install the X Window System...${DEFAULT}\n"
 
 	xbps-install -S xorg-server xorg-server-xwayland xorg-video-drivers xorg-input-drivers \
-		xinit xauth xrandr xrdb xwininfo xdpyinfo xsetroot
+		xinit xauth xrandr xrdb xwininfo xdpyinfo xsetroot neofetch
 
 	echo "\n${BLUE}Copy configurations...${DEFAULT}\n"
 
@@ -84,6 +86,7 @@ case $xwinsys in
 	- 6 Cinnamon
 	- 7 LXQt
 	- 8 Enlightenment
+	- 9 LXDE
 	- 0 none\n"
 
 	read -p "Which Desktop environment do you want? " desktop
@@ -100,7 +103,7 @@ case $xwinsys in
 			xfce4-session xfce4-settings xfce4-systemload-plugin xfce4-taskmanager xfce4-terminal \
 			xfce4-timer-plugin xfce4-verve-plugin xfce4-whiskermenu-plugin xfce4-xkb-plugin \
 			Thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin ristretto parole \
-			engrampa mousepad xfwm4 xfdesktop lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
+			xarchiver mousepad xfwm4 xfdesktop lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
 			zathura zathura-pdf-poppler gvfs gvfs-mtp gvfs-gphoto2 xfce-polkit
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -117,7 +120,7 @@ case $xwinsys in
 			mate-settings-daemon mate-system-monitor mate-terminal mate-themes mate-tweak mate-utils \
 			mozo pluma parole caja caja-image-converter caja-sendto caja-open-terminal caja-wallpaper \
 			caja-xattr-tags eom atril lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
-			gvfs gvfs-mtp gvfs-gphoto2
+			gvfs gvfs-mtp gvfs-gphoto2 engrampa mate-power-manager mate-polkit
 		
 		echo "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -131,7 +134,7 @@ case $xwinsys in
 			gnome-disk-utility nautilus nautilus-sendto gvfs gvfs-mtp gvfs-gphoto2 totem eog eog-plugins \
 			evince gedit gedit-plugins gnome-video-effects gnome-themes-extra gnome-session gnome-screenshot \
 			gnome-shell-extensions gnome-icon-theme gnome-icon-theme-extras gnome-icon-theme-symbolic \
-			gnome-backgrounds
+			gnome-backgrounds file-roller
 					
 		echo "\n${BLUE}GNOME Applications${DEFAULT}\n"
 		echo "Includes: GNOME Calendar, GNOME Clocks, GNOME Weather, Evolution, GNOME Font Viewer,"
@@ -166,7 +169,7 @@ case $xwinsys in
 		xbps-install -S plasma-desktop plasma-disks plasma-thunderbolt plasma-systemmonitor plasma-pa plasma-nm \
 			plasma-firewall plasma-browser-integration plasma-vault latte-dock oxygen kdegraphics-thumbnailers \
 			dolphin dolphin-plugins kate5 konsole okular gwenview ark sddm sddm-kcm yakuake spectacle \
-			partitionmanager
+			partitionmanager ffmpegthumbs kde-gtk-config5
 
 		echo "\n${BLUE}KDE Applications${DEFAULT}\n"
 		echo "Includes: KMail, Kontact, KOrganizer, KAddressbook, Akregator, Konversation, KCalc, KCharSelect\n"
@@ -188,6 +191,23 @@ case $xwinsys in
 			;;
 		esac
 
+		read -p "Do you want to use KDE Connect? (yes/no) " kdeconnect
+		case $kdeconnect in
+			yes )
+
+			echo "\n${BLUE}Install KDE Connect...${DEFAULT}\n"
+
+			xbps-install -S kdeconnect
+
+			;;
+
+			no )
+
+			continue
+
+			;;
+		esac
+
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
@@ -199,7 +219,7 @@ case $xwinsys in
 		xbps-install -S budgie-desktop gnome-control-center gnome-system-monitor gnome-terminal nautilus \
 			nautilus-sendto gnome-keyring lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
 			evince gedit gedit-plugins eog eog-plugins parole gnome-screenshot gnome-disk-utility \
-			gvfs gvfs-mtp gvfs-gphoto2
+			gvfs gvfs-mtp gvfs-gphoto2 file-roller
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -211,7 +231,7 @@ case $xwinsys in
 
 		xbps-install -S cinnamon gnome-system-monitor gnome-terminal gnome-screenshot gnome-disk-utility \
 			gnome-keyring gedit gedit-plugins evince gvfs gvfs-mtp gvfs-gphoto2 parole lightdm lightdm-gtk3-greeter \
-			lightdm-gtk-greeter-settings eog eog-plugins
+			lightdm-gtk-greeter-settings eog eog-plugins file-roller
 		
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -223,7 +243,8 @@ case $xwinsys in
 
 		xbps-install -S lxqt-about lxqt-admin lxqt-archiver lxqt-build-tools lxqt-config lxqt-globalkeys lxqt-notificationd \
 			lxqt-openssh-askpass lxqt-panel lxqt-policykit lxqt-powermanagement lxqt-qtplugin lxqt-runner lxqt-session \
-			lxqt-sudo lxqt-themes obconf-qt openbox pcmanfm-qt lximage-qt FeatherPad qlipper sddm
+			lxqt-sudo lxqt-themes obconf-qt openbox pcmanfm-qt lximage-qt FeatherPad qlipper lightdm lightdm-gtk3-greeter \
+			lightdm-gtk-greeter-settings qterminal
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -235,7 +256,20 @@ case $xwinsys in
 
 		xbps-install -S enlightenment terminology mousepad gvfs gvfs-mtp gvfs-gphoto2 parole zathura zathura-pdf-poppler \
 			Thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin lightdm lightdm-gtk3-greeter \
-			lightdm-gtk-greeter-settings
+			lightdm-gtk-greeter-settings xarchiver
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+
+		;;
+
+		9 )
+
+		echo "\n${BLUE}Install LXDE...${DEFAULT}\n"
+
+		xbps-install -S lxde-common lxde-icon-theme lxappearance lxinput lxpanel lxrandr lxsession lxtask \
+			lxterminal pcmanfm gvfs gvfs-mtp gvfs-gphoto2 viewnior lightdm lightdm-gtk3-greeter \
+			lightdm-gtk-greeter-settings mousepad parole zathura zathura-pdf-poppler openbox obconf \
+			lxappearance-obconf xarchiver
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -254,7 +288,7 @@ case $xwinsys in
 	
 	echo "\n${BLUE}Install a Window Manager...${DEFAULT}\n"
 	echo "Possible (type in number): \n
-	- 1 i3wm
+	- 1 i3-gaps
 	- 2 Openbox
 	- 3 Fluxbox
 	- 4 bspwm
@@ -262,13 +296,14 @@ case $xwinsys in
 	- 6 IceWM
 	- 7 jwm
 	- 8 dwm
+	- 9 FVWM3
 	- 0 none\n"
 
 	read -p "Which Window manager do you want? " windowmanager
 	case $windowmanager in
 		1 ) 
 
-		echo "\n${BLUE}Install i3...${DEFAULT}\n"
+		echo "\n${BLUE}Install i3-gaps...${DEFAULT}\n"
 
 		xbps-install -S i3-gaps i3lock i3status i3blocks dunst dmenu feh Thunar \
 			thunar-volman thunar-archive-plugin thunar-media-tags-plugin xarchiver \
@@ -288,7 +323,7 @@ case $xwinsys in
 			feh lxterminal lxrandr lxinput pcmanfm gvfs gvfs-mtp gvfs-gphoto2 \
 			mousepad lxtask scrot htop xarchiver lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings viewnior
-		
+
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
@@ -365,6 +400,18 @@ case $xwinsys in
 
 		;;
 
+		9 )
+
+		echo "\n${BLUE}Install FVWM3...${DEFAULT}\n"
+
+		xbps-install -S fvwm3 feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
+			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+
+		;;
+
 		0 ) 
 
 		continue
@@ -415,7 +462,7 @@ case $xwinsys in
 
 		echo "\n${BLUE}Install Firefox...${DEFAULT}\n"
 
-		xbps-install -S firefox firefox-i18n-en-US
+		xbps-install -S firefox firefox-i18n-en-US firefox-i18n-de
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -425,7 +472,7 @@ case $xwinsys in
 
 		echo "\n${BLUE}Install Firefox Extended Support Release...${DEFAULT}\n"
 
-		xbps-install -S firefox-esr firefox-esr-i18n-en-US
+		xbps-install -S firefox-esr firefox-esr-i18n-en-US firefox-esr-i18n-de
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -479,7 +526,8 @@ case $xwinsys in
 		echo "\n${BLUE}Install LibreOffice...${DEFAULT}\n"
 
 		xbps-install -S libreoffice-writer libreoffice-calc libreoffice-impress \
-			libreoffice-draw libreoffice-math libreoffice-base libreoffice-gnome
+			libreoffice-draw libreoffice-math libreoffice-base libreoffice-gnome \
+			libreoffice-i18n-en-US libreoffice-i18n-de
 
 		echo "\n${GREEN}Done${DEFAULT}\n"
 
@@ -530,7 +578,7 @@ case $xwinsys in
 		echo "\n${BLUE}Enable libvirtd service...${DEFAULT}\n"
 
 		if [ -L /var/service/libvirtd ]; then
-			echo "Service ${GREEN}libvirtd ${DEFAULT}already exist. Continue.\n"
+			echo "\nService ${GREEN}libvirtd ${DEFAULT}already exist. Continue.\n"
 		else
 			ln -sv /etc/sv/libvirtd /var/service
 			echo "\n${GREEN}Done${DEFAULT}\n"
@@ -547,32 +595,104 @@ case $xwinsys in
 
 	sleep 1
 
+	# Install a Terminal emulator
+
+	echo "\n${BLUE}Install a Terminal emulator...${DEFAULT}\n"
+	echo "Possible (type in number): \n
+	- 1 Alacritty
+	- 2 xterm
+	- 3 LXTerminal
+	- 4 Yakuake
+	- 5 Sakura
+	- 0 I take the given one\n"
+
+	read -p "What terminal emulator do you want? " terminal
+	case $terminal in
+		1 ) 
+
+		echo "\n${BLUE}Install Alacritty...${DEFAULT}\n"
+
+		xbps-install -S alacritty alacritty-terminfo
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+			
+		;;
+		
+		2 ) 
+
+		echo "\n${BLUE}Install xterm...${DEFAULT}\n"
+
+		xbps-install -S xterm
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+			
+		;;
+		
+		3 ) 
+		
+		echo "\n${BLUE}Install LXTerminal...${DEFAULT}\n"
+
+		xbps-install -S lxterminal
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+			
+		;;
+
+		4 )
+		
+		echo "\n${BLUE}Install Yakuake...${DEFAULT}\n"
+
+		xbps-install -S yakuake
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+
+		;;
+
+		5 )
+		
+		echo "\n${BLUE}Install Sakura...${DEFAULT}\n"
+
+		xbps-install -S sakura
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+
+		;;
+
+		0 )
+
+		continue
+
+		;;
+	esac
+
+	sleep 1
+
 	# Enable required services
 
 	echo "\n${BLUE}Enable required services...${DEFAULT}\n"
 
-	xbps-install -S dbus
+	xbps-install -Sy dbus
 
 	if [ -L /var/service/dbus ]; then
-		echo "Service ${GREEN}dbus ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}dbus ${DEFAULT}already exist. Continue.\n"
 	else
-		ln -sv /etc/sv/dbus /var/service
+		ln -s /etc/sv/dbus /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
-	xbps-install -S elogind
+	xbps-install -Sy elogind
 
 	if [ -L /var/service/elogind ]; then
-		echo "Service ${GREEN}elogind ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}elogind ${DEFAULT}already exist. Continue.\n"
 	else
-		ln -sv /etc/sv/elogind /var/service
+		ln -s /etc/sv/elogind /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
 	fi
 	
 	if [ -L /var/service/polkitd ]; then
-		echo "Service ${GREEN}polkitd ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}polkitd ${DEFAULT}already exist. Continue.\n"
 	else
-		ln -sv /etc/sv/polkitd /var/service
+		ln -s /etc/sv/polkitd /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
@@ -592,18 +712,40 @@ sleep 1
 echo "\n${BLUE}Configure Cron...${DEFAULT}\n"
 echo "\nInstall cronie...\n"
 
-xbps-install -S cronie
+xbps-install -Sy cronie
 
 echo "\n${BLUE}Enable cronie service...${DEFAULT}\n"
 
 if [ -L /var/service/cronie ]; then
-	echo "Service ${GREEN}cronie ${DEFAULT}already exist. Continue.\n"
+	echo "\nService ${GREEN}cronie ${DEFAULT}already exist. Continue.\n"
 else
 	ln -sv /etc/sv/cronie /var/service
 	echo "\n${GREEN}Done${DEFAULT}\n"
 fi
 
 sleep 1
+
+# Configure Audio
+
+read -p "Do you want to install PulseAudio for audio? (yes/no) " pulseaudio
+case $pulseaudio in
+	yes )
+
+	echo "\n${BLUE}Install PulseAudio...${DEFAULT}\n"
+
+	xbps-install -S pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio \
+		pavucontrol
+
+	echo "\n${GREEN}Done${DEFAULT}\n"
+
+	;;
+
+	no )
+
+	continue
+
+	;;
+esac
 
 # Configure Network Management
 
@@ -625,7 +767,7 @@ case $netmngt in
 	echo "\n${BLUE}Enable Network Manager service...${DEFAULT}\n"
 
 	if [ -L /var/service/NetworkManager ]; then
-		echo "Service ${GREEN}NetworkManager ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}NetworkManager ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/NetworkManager /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -642,7 +784,7 @@ case $netmngt in
 	echo "\n${BLUE}Enable Connman service...${DEFAULT}\n"
 
 	if [ -L /var/service/connmand ]; then
-		echo "Service ${GREEN}connmand ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}connmand ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/connmand /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -672,7 +814,7 @@ case $bluetooth in
 	echo "\n${BLUE}Enable Bluetooth service...${DEFAULT}\n"
 
 	if [ -L /var/service/bluetoothd ]; then
-		echo "Service ${GREEN}bluetoothd ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}bluetoothd ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/bluetoothd /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -703,7 +845,7 @@ case $printer in
 	echo "\n${BLUE}Enable CUPS service...${DEFAULT}\n"
 
 	if [ -L /var/service/cupsd ]; then
-		echo "Service ${GREEN}cupsd ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}cupsd ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/cupsd /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -722,7 +864,7 @@ sleep 1
 
 # Configure Notebook Power Saving
 
-read -p "Do you want to configure TLP for power saving (Notebooks only)? (yes/no) " nb_power
+read -p "Do you want to install TLP for power saving (Notebooks only)? (yes/no) " nb_power
 case $nb_power in
 	yes )
 
@@ -733,7 +875,7 @@ case $nb_power in
 	echo "\n${BLUE}Enable TLP service...${DEFAULT}\n"
 
 	if [ -L /var/service/tlp ]; then
-		echo "Service ${GREEN}tlp ${DEFAULT}already exist. Continue.\n"
+		echo "\nService ${GREEN}tlp ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/tlp /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
@@ -760,6 +902,8 @@ elif [ -f /usr/bin/sddm ]; then
 	ln -sv /etc/sv/sddm /var/service
 elif [ -f /usr/bin/gdm ]; then
 	ln -sv /etc/sv/gdm /var/service
+elif [ -f /usr/bin/slim ]; then
+	ln -sv /etc/sv/slim /var/service
 fi
 
 echo "\n${BLUE}Finished.${DEFAULT}\n"

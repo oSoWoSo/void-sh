@@ -1,27 +1,29 @@
 # void.sh
 
-void-sh is a small program that configures Void Linux.
+void-sh is a program written in Bash that configures Void Linux.
 
 ### Content
 
 - Install recommended packages
 - Install development packages
-- Install the X Window System (1/9) (optional)
-- Install a Desktop environment (2/9) (optional)
-    - Xfce, MATE, GNOME, KDE Plasma, Budgie, Cinnamon, LXQt, Enlightenment
-- Install a Window manager (3/9) (optional)
-    - i3wm, Openbox, Fluxbox, bspwm, herbstluftwm, IceWM, jwm, dwm
-- Install fonts (4/9) (optional)
-- Install an Internet browser (5/9) (optional)
-- Install LibreOffice (6/9) (optional)
-- Install GIMP + Inkscape (7/9) (optional)
-- Install QEMU + Virt Manager (8/9) (optional)
-- Enable required services (9/9)
+- Install the X Window System (1/10) (optional)
+- Install a Desktop environment (2/10) (optional)
+    - Xfce, MATE, GNOME, KDE Plasma, Budgie, Cinnamon, LXQt, Enlightenment, LXDE
+- Install a Window manager (3/10) (optional)
+    - i3wm, Openbox, Fluxbox, bspwm, herbstluftwm, IceWM, jwm, dwm, FVWM3
+- Install fonts (4/10) (optional)
+- Install an Internet browser (5/10) (optional)
+- Install LibreOffice (6/10) (optional)
+- Install GIMP + Inkscape (7/10) (optional)
+- Install QEMU + Virt Manager (8/10) (optional)
+- Install a Terminal emulator (9/10) (optional)
+- Enable required services (10/10)
 - Configure Cron
+- Configure Audio (optional)
 - Configure Network Management (optional)
 - Configure Bluetooth (optional)
 - Configure Printing support (optional)
-- Configure Notebook Power Saving (optional)
+- Configure TLP for notebook power saving (optional)
 - Configure the Display manager (REQUIRES STEP 2/3)
 
 ### How to use
