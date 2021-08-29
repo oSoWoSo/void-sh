@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #
+# - Update the system
 # - Install recommended packages
 # - Install development packages
 # - Install the X Window System (1/10)
@@ -29,9 +30,17 @@ GREEN='\033[01;32m'
 RED='\033[01;31m'
 DEFAULT='\033[00m'
 
+# Update the System
+
+echo "\n${BLUE}Checking for updates...${DEFAULT}\n"
+
+xbps-install -Su
+
+echo "\n${GREEN}Done${DEFAULT}\n"
+
 # Install recommended packages
 
-echo "\n${BLUE}Install recommended packages...${DEFAULT}\n"
+echo "${BLUE}Install recommended packages...${DEFAULT}\n"
 
 xbps-install -S curl wget unzip zip nano vim gptfdisk mtools mlocate \
 	ntfs-3g fuse-exfat bash-completion
@@ -134,7 +143,7 @@ case $xwinsys in
 			gnome-disk-utility nautilus nautilus-sendto gvfs gvfs-mtp gvfs-gphoto2 totem eog eog-plugins \
 			evince gedit gedit-plugins gnome-video-effects gnome-themes-extra gnome-session gnome-screenshot \
 			gnome-shell-extensions gnome-icon-theme gnome-icon-theme-extras gnome-icon-theme-symbolic \
-			gnome-backgrounds file-roller
+			gnome-backgrounds file-roller chrome-gnome-shell
 					
 		echo "\n${BLUE}GNOME Applications${DEFAULT}\n"
 		echo "Includes: GNOME Calendar, GNOME Clocks, GNOME Weather, Evolution, GNOME Font Viewer,"
@@ -294,9 +303,10 @@ case $xwinsys in
 	- 4 bspwm
 	- 5 herbstluftwm
 	- 6 IceWM
-	- 7 jwm
-	- 8 dwm
-	- 9 FVWM3
+	- 7 awesome
+	- 8 jwm
+	- 9 dwm
+	- 10 FVWM3
 	- 0 none\n"
 
 	read -p "Which Window manager do you want? " windowmanager
@@ -378,6 +388,18 @@ case $xwinsys in
 
 		7 )
 
+		echo "\n${BLUE}Install awesome...${DEFAULT}\n"
+
+		xbps-install -S awesome vicious dunst feh arandr xfce4-terminal Thunar thunar-volman \
+				thunar-archive-plugin thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot \
+				htop xarchiver lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+
+		echo "\n${GREEN}Done${DEFAULT}\n"
+
+		;;
+
+		8 )
+
 		echo "\n${BLUE}Install jwm...${DEFAULT}\n"
 
 		xbps-install -S jwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
@@ -388,7 +410,7 @@ case $xwinsys in
 
 		;;
 
-		8 )
+		9 )
 
 		echo "\n${BLUE}Install dwm...${DEFAULT}\n"
 
@@ -400,7 +422,7 @@ case $xwinsys in
 
 		;;
 
-		9 )
+		10 )
 
 		echo "\n${BLUE}Install FVWM3...${DEFAULT}\n"
 
@@ -671,6 +693,8 @@ case $xwinsys in
 
 	echo "\n${BLUE}Enable required services...${DEFAULT}\n"
 
+	echo "\n${BLUE}Enable D-Bus...${DEFAULT}\n"
+
 	xbps-install -Sy dbus
 
 	if [ -L /var/service/dbus ]; then
@@ -680,6 +704,8 @@ case $xwinsys in
 		echo "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
+	echo "\n${BLUE}Enable elogind...${DEFAULT}\n"
+
 	xbps-install -Sy elogind
 
 	if [ -L /var/service/elogind ]; then
@@ -688,7 +714,9 @@ case $xwinsys in
 		ln -s /etc/sv/elogind /var/service
 		echo "\n${GREEN}Done${DEFAULT}\n"
 	fi
-	
+
+	echo "\n${BLUE}Enable Polkit...${DEFAULT}\n"
+
 	if [ -L /var/service/polkitd ]; then
 		echo "\nService ${GREEN}polkitd ${DEFAULT}already exist. Continue.\n"
 	else
@@ -747,6 +775,8 @@ case $pulseaudio in
 	;;
 esac
 
+sleep 1
+
 # Configure Network Management
 
 echo "\n${BLUE}Configure Network Management...${DEFAULT}\n"
@@ -762,7 +792,26 @@ case $netmngt in
 	echo "\n${BLUE}Install Network Manager...${DEFAULT}\n"
 
 	xbps-install -S NetworkManager NetworkManager-openvpn NetworkManager-openconnect \
-		network-manager-applet
+			NetworkManager-vpnc NetworkManager-l2tp
+	
+	echo "\n"
+
+	read -p "Do you want to integrate Network Manager into a graphical environment? (yes/no) " nmapplet
+	case $nmapplet in
+			yes ) 
+
+			echo "\n${BLUE}Install Network Manager applet...${DEFAULT}\n"
+
+			xbps-install -S network-manager-applet
+					
+			;;
+
+			no )
+
+			continue
+
+			;;
+	esac
 
 	echo "\n${BLUE}Enable Network Manager service...${DEFAULT}\n"
 
@@ -807,9 +856,28 @@ read -p "Do you want to use Bluetooth? (yes/no) " bluetooth
 case $bluetooth in
 	yes )
 
-	echo "\n${BLUE}Install BlueZ and Blueman...${DEFAULT}\n"
+	echo "\n${BLUE}Install BlueZ...${DEFAULT}\n"
 
-	xbps-install -S bluez blueman
+	xbps-install -S bluez
+
+	echo "\n"
+
+	read -p "Do you want to integrate Bluetooth into a graphical environment? (yes/no) " blueman
+	case $blueman in
+			yes )
+
+			echo "\n${BLUE}Install Blueman...${DEFAULT}\n"
+
+			xbps-install -S blueman
+
+			;;
+
+			no )
+
+			continue
+
+			;;
+	esac
 
 	echo "\n${BLUE}Enable Bluetooth service...${DEFAULT}\n"
 
@@ -839,8 +907,26 @@ case $printer in
 
 	echo "\n${BLUE}Install CUPS and Tools...${DEFAULT}\n"
 
-	xbps-install -S cups cups-pk-helper cups-filters system-config-printer \
-		foomatic-db foomatic-db-engine
+	xbps-install -S cups cups-pk-helper cups-filters foomatic-db foomatic-db-engine
+
+	echo "\n"
+
+	read -p "Do you want to install a graphical printer program? (yes/no) " printergui
+	case $printergui in
+			yes )
+
+			echo "\n${BLUE}Install system-config-printer...${DEFAULT}\n"
+
+			xbps-install -S system-config-printer
+
+			;;
+
+			no )
+
+			continue
+
+			;;
+	esac
 
 	echo "\n${BLUE}Enable CUPS service...${DEFAULT}\n"
 
