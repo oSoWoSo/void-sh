@@ -27,7 +27,7 @@ void-sh is a program written in Bash that configures Void Linux.
 - Configure Bluetooth (optional)
 - Configure Printing support (optional)
 - Configure TLP for notebook power saving (optional)
-- Configure the Display manager (REQUIRES STEP 2/3)
+- Configure the Display manager (REQUIRES STEP 2/3/4)
 
 ### How to use
 
