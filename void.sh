@@ -163,7 +163,7 @@ case $xwinsys in
 		
 			no )
 
-			continue
+
 
 			;;
 		esac
@@ -196,7 +196,7 @@ case $xwinsys in
 
 			no )
 
-			continue
+
 
 			;;
 		esac
@@ -213,7 +213,7 @@ case $xwinsys in
 
 			no )
 
-			continue
+
 
 			;;
 		esac
@@ -287,7 +287,7 @@ case $xwinsys in
 		
 		0 ) 
 
-		continue
+		
 			
 		;;
 	esac
@@ -338,7 +338,7 @@ case $xwinsys in
 		
 		0 ) 
 
-		continue
+		
 			
 		;;
 	esac
@@ -382,8 +382,7 @@ case $xwinsys in
 
 		xbps-install openbox obconf lxappearance lxappearance-obconf jgmenu dunst \
 			feh lxterminal lxrandr lxinput pcmanfm gvfs gvfs-mtp gvfs-gphoto2 \
-			mousepad lxtask scrot htop xarchiver lightdm lightdm-gtk3-greeter \
-			lightdm-gtk-greeter-settings viewnior
+			mousepad lxtask scrot htop xarchiver viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -395,7 +394,7 @@ case $xwinsys in
 
 		xbps-install fluxbox dunst feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad xfce4-terminal scrot htop xarchiver \
-		        lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+		        viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -406,8 +405,7 @@ case $xwinsys in
 		echo -e "\n${BLUE}Install Bspwm...${DEFAULT}\n"
 
 		xbps-install bspwm sxhkd dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -418,8 +416,7 @@ case $xwinsys in
 		echo -e "\n${BLUE}Install herbstluftwm...${DEFAULT}\n"
 
 		xbps-install herbstluftwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -430,8 +427,7 @@ case $xwinsys in
 		echo -e "\n${BLUE}Install IceWM...${DEFAULT}\n"
 
 		xbps-install icewm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -443,7 +439,7 @@ case $xwinsys in
 
 		xbps-install awesome vicious dunst feh arandr xfce4-terminal Thunar thunar-volman \
 				thunar-archive-plugin thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot \
-				htop xarchiver lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+				htop xarchiver viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -454,8 +450,7 @@ case $xwinsys in
 		echo -e "\n${BLUE}Install jwm...${DEFAULT}\n"
 
 		xbps-install jwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -466,8 +461,7 @@ case $xwinsys in
 		echo -e "\n${BLUE}Install dwm...${DEFAULT}\n"
 
 		xbps-install dwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -478,8 +472,7 @@ case $xwinsys in
 		echo -e "\n${BLUE}Install FVWM3...${DEFAULT}\n"
 
 		xbps-install fvwm3 feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -487,7 +480,7 @@ case $xwinsys in
 
 		0 ) 
 
-		continue
+		
 			
 		;;
 	esac
@@ -511,7 +504,7 @@ case $xwinsys in
 		
 		no ) 
 
-		continue
+		
 			
 		;;
 	esac
@@ -583,7 +576,7 @@ case $xwinsys in
 		
 		0 ) 
 
-		continue
+		
 			
 		;;
 	esac
@@ -608,7 +601,7 @@ case $xwinsys in
 
 		no )
 
-		continue
+		
 
 		;;
 	esac
@@ -631,7 +624,7 @@ case $xwinsys in
 
 		no )
 
-		continue
+		
 
 		;;
 	esac
@@ -661,7 +654,7 @@ case $xwinsys in
 
 		no )
 
-		continue
+		
 
 		;;
 	esac
@@ -733,7 +726,7 @@ case $xwinsys in
 
 		0 )
 
-		continue
+		
 
 		;;
 	esac
@@ -779,7 +772,7 @@ case $xwinsys in
 
 	no )
 
-	continue
+	
 
 	;;
 esac
@@ -791,7 +784,7 @@ sleep 1
 echo -e "\n${BLUE}Configure Cron...${DEFAULT}\n"
 echo -e "\nInstall cronie...\n"
 
-xbps-install y cronie
+xbps-install -y cronie
 
 echo -e "\n${BLUE}Enable cronie service...${DEFAULT}\n"
 
@@ -821,7 +814,7 @@ case $pulseaudio in
 
 	no )
 
-	continue
+	
 
 	;;
 esac
@@ -859,7 +852,7 @@ case $netmngt in
 
 			no )
 
-			continue
+
 
 			;;
 	esac
@@ -894,7 +887,7 @@ case $netmngt in
 
 	0 )
 
-	continue
+	
 
 	;;
 esac
@@ -925,7 +918,7 @@ case $bluetooth in
 
 			no )
 
-			continue
+
 
 			;;
 	esac
@@ -943,7 +936,7 @@ case $bluetooth in
 
 	no )
 
-	continue
+	
 
 	;;
 esac
@@ -974,7 +967,7 @@ case $printer in
 
 			no )
 
-			continue
+
 
 			;;
 	esac
@@ -992,7 +985,7 @@ case $printer in
 
 	no )
 
-	continue
+	
 
 	;;
 esac
@@ -1022,7 +1015,7 @@ case $nb_power in
 
 	no )
 
-	continue
+	
 
 	;;
 esac
