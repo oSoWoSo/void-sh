@@ -4,16 +4,17 @@
 # - Update the system
 # - Install recommended packages
 # - Install development packages
-# - Install the X Window System (1/10)
-# - Install a Desktop environment (2/10)
-# - Install a Window manager (3/10)
-# - Install fonts (4/10)
-# - Install an internet browser (5/10)
-# - Install LibreOffice (6/10)
-# - Install GIMP + Inkscape (7/10)
-# - Install QEMU + Virt Manager (8/10)
-# - Install a Terminal emulator (9/10)
-# - Enable required services (10/10)
+# - Install the X Window System (1/11)
+# - Install a Desktop environment (2/11)
+# - Install a Display manager (3/11)
+# - Install a Window manager (4/11)
+# - Install fonts (5/11)
+# - Install an internet browser (6/11)
+# - Install LibreOffice (7/11)
+# - Install GIMP + Inkscape (8/11)
+# - Install QEMU + Virt Manager (9/11)
+# - Install a Terminal emulator (10/11)
+# - Enable required services (11/11)
 # - Configure Cron
 # - Configure Audio
 # - Configure Network Manager
@@ -293,6 +294,57 @@ case $xwinsys in
 
 	sleep 1
 
+	# Install display manager
+	
+	echo -e "\n${BLUE}Install a display manageer...${DEFAULT}\n"
+	echo -e "Possible (type in number): \n
+	- 1 LightDM
+	- 2 emptty
+	- 3 slim
+	- 0 none\n"
+	
+	read -p "Which display manager do you want? " displaymanager
+	case $displaymanager in
+
+		1 )
+		
+		echo -e "\n${BLUE}Install LightDM...${DEFAULT}\n"		
+		
+		xbps-install lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings
+		
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
+			
+		;;
+		
+		2 )
+
+		echo -e "\n${BLUE}Install emptty...${DEFAULT}\n"		
+
+		xbps-install emptty
+
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
+					
+		;;
+
+		3 )
+
+		echo -e "\n${BLUE}Install slim...${DEFAULT}\n"		
+
+		xbps-install slim
+
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
+					
+		;;
+		
+		0 ) 
+
+		continue
+			
+		;;
+	esac
+
+	sleep 1
+
 	# Install a Window manager
 	
 	echo -e "\n${BLUE}Install a Window Manager...${DEFAULT}\n"
@@ -318,8 +370,7 @@ case $xwinsys in
 		xbps-install i3-gaps i3lock i3status i3blocks dunst dmenu feh Thunar \
 			thunar-volman thunar-archive-plugin thunar-media-tags-plugin xarchiver \
 			lm_sensors acpi playerctl scrot htop xfce4-terminal arandr gvfs gvfs-mtp \
-			gvfs-gphoto2 mousepad xfce4-taskmanager lightdm lightdm-gtk3-greeter \
-			lightdm-gtk-greeter-settings viewnior
+			gvfs-gphoto2 mousepad xfce4-taskmanager viewnior
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -990,6 +1041,9 @@ elif [ -f /usr/bin/gdm ]; then
 	ln -sv /etc/sv/gdm /var/service
 elif [ -f /usr/bin/slim ]; then
 	ln -sv /etc/sv/slim /var/service
+elif [ -f /usr/bin/emptty ]; then
+	ln -sv /etc/sv/emptty /var/service
 fi
+
 
 echo -e "\n${BLUE}Finished.${DEFAULT}\n"
