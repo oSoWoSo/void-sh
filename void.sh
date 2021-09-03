@@ -62,9 +62,9 @@ sleep 1
 
 # Install the X Window System
 
-read -p "Do you want to use a graphical environment? (yes/no) " xwinsys
+read -p "Do you want to use a graphical environment? (y/N) " xwinsys
 case $xwinsys in
-	yes )
+	y )
 
 	echo -e "\n${BLUE}Install the X Window System...${DEFAULT}\n"
 
@@ -150,9 +150,9 @@ case $xwinsys in
 		echo -e "Includes: GNOME Calendar, GNOME Clocks, GNOME Weather, Evolution, GNOME Font Viewer,"
 		echo -e "GNOME Calculator, GNOME Characters, GNOME Contacts, GNOME Documents, GNOME Maps\n"
 
-		read -p "Do you want to install GNOME applications? (yes/no) " gnomeapps
+		read -p "Do you want to install GNOME applications? (y/N) " gnomeapps
 		case $gnomeapps in
-			yes )
+			y )
 
 			echo -e "\n${BLUE}Install GNOME applications...${DEFAULT}\n"
 
@@ -161,9 +161,7 @@ case $xwinsys in
 
 			;;
 		
-			no )
-
-
+			n )
 
 			;;
 		esac
@@ -184,9 +182,9 @@ case $xwinsys in
 		echo -e "\n${BLUE}KDE Applications${DEFAULT}\n"
 		echo -e "Includes: KMail, Kontact, KOrganizer, KAddressbook, Akregator, Konversation, KCalc, KCharSelect\n"
 
-		read -p "Do you want to install KDE applications? (yes/no) " kdeapps
+		read -p "Do you want to install KDE applications? (y/N) " kdeapps
 		case $kdeapps in
-			yes )
+			y )
 
 			echo -e "\n${BLUE}Install KDE applications...${DEFAULT}\n"
 
@@ -194,16 +192,14 @@ case $xwinsys in
 
 			;;
 
-			no )
-
-
+			n )
 
 			;;
 		esac
 
-		read -p "Do you want to use KDE Connect? (yes/no) " kdeconnect
+		read -p "Do you want to use KDE Connect? (y/N) " kdeconnect
 		case $kdeconnect in
-			yes )
+			y )
 
 			echo -e "\n${BLUE}Install KDE Connect...${DEFAULT}\n"
 
@@ -211,9 +207,7 @@ case $xwinsys in
 
 			;;
 
-			no )
-
-
+			n )
 
 			;;
 		esac
@@ -286,8 +280,6 @@ case $xwinsys in
 		;;
 		
 		0 ) 
-
-		
 			
 		;;
 	esac
@@ -337,8 +329,6 @@ case $xwinsys in
 		;;
 		
 		0 ) 
-
-		
 			
 		;;
 	esac
@@ -479,8 +469,6 @@ case $xwinsys in
 		;;
 
 		0 ) 
-
-		
 			
 		;;
 	esac
@@ -489,9 +477,9 @@ case $xwinsys in
 
 	# Install fonts
 
-	read -p "Do you want to install some fonts? (yes/no) " fonts
+	read -p "Do you want to install some fonts? (y/N) " fonts
 	case $fonts in
-		yes ) 
+		y ) 
 
 		echo -e "\n${BLUE}Install fonts...${DEFAULT}\n"
 
@@ -502,9 +490,7 @@ case $xwinsys in
 			
 		;;
 		
-		no ) 
-
-		
+		n ) 
 			
 		;;
 	esac
@@ -575,8 +561,6 @@ case $xwinsys in
 		;;
 		
 		0 ) 
-
-		
 			
 		;;
 	esac
@@ -585,9 +569,9 @@ case $xwinsys in
 
 	# Install LibreOffice
 
-	read -p "Do you want to install LibreOffice? (yes/no) " libreoffice
+	read -p "Do you want to install LibreOffice? (y/N) " libreoffice
 	case $libreoffice in
-		yes )
+		y )
 
 		echo -e "\n${BLUE}Install LibreOffice...${DEFAULT}\n"
 
@@ -599,9 +583,7 @@ case $xwinsys in
 
 		;;
 
-		no )
-
-		
+		n )
 
 		;;
 	esac
@@ -610,9 +592,9 @@ case $xwinsys in
 
 	# Install GIMP + Inkscape
 
-	read -p "Do you want to install GIMP and Inkscape? (yes/no) " gimpinkscape
+	read -p "Do you want to install GIMP and Inkscape? (y/N) " gimpinkscape
 	case $gimpinkscape in
-		yes )
+		y )
 
 		echo -e "\n${BLUE}Install GIMP and Inkscape...${DEFAULT}\n"
 
@@ -622,9 +604,7 @@ case $xwinsys in
 
 		;;
 
-		no )
-
-		
+		n )
 
 		;;
 	esac
@@ -633,9 +613,9 @@ case $xwinsys in
 
 	# Install QEMU + Virt Manager
 
-	read -p "Do you want to install QEMU and Virt Manager? (yes/no) " qemuvirt
+	read -p "Do you want to install QEMU and Virt Manager? (y/N) " qemuvirt
 	case $qemuvirt in
-		yes )
+		y )
 
 		echo -e "\n${BLUE}Install QEMU and Virt Manager...${DEFAULT}\n"
 
@@ -652,9 +632,7 @@ case $xwinsys in
 
 		;;
 
-		no )
-
-		
+		n )
 
 		;;
 	esac
@@ -726,8 +704,6 @@ case $xwinsys in
 
 		0 )
 
-		
-
 		;;
 	esac
 
@@ -770,9 +746,7 @@ case $xwinsys in
 
 	;;
 
-	no )
-
-	
+	n )
 
 	;;
 esac
@@ -799,9 +773,9 @@ sleep 1
 
 # Configure Audio
 
-read -p "Do you want to install PulseAudio for audio? (yes/no) " pulseaudio
+read -p "Do you want to install PulseAudio for audio? (y/N) " pulseaudio
 case $pulseaudio in
-	yes )
+	y )
 
 	echo -e "\n${BLUE}Install PulseAudio...${DEFAULT}\n"
 
@@ -812,9 +786,7 @@ case $pulseaudio in
 
 	;;
 
-	no )
-
-	
+	n )
 
 	;;
 esac
@@ -840,9 +812,9 @@ case $netmngt in
 	
 	echo -e "\n"
 
-	read -p "Do you want to integrate Network Manager into a graphical environment? (yes/no) " nmapplet
+	read -p "Do you want to integrate Network Manager into a graphical environment? (y/N) " nmapplet
 	case $nmapplet in
-			yes ) 
+			y ) 
 
 			echo -e "\n${BLUE}Install Network Manager applet...${DEFAULT}\n"
 
@@ -850,9 +822,7 @@ case $netmngt in
 					
 			;;
 
-			no )
-
-
+			n )
 
 			;;
 	esac
@@ -887,8 +857,6 @@ case $netmngt in
 
 	0 )
 
-	
-
 	;;
 esac
 
@@ -896,9 +864,9 @@ sleep 1
 
 # Configure Bluetooth
 
-read -p "Do you want to use Bluetooth? (yes/no) " bluetooth
+read -p "Do you want to use Bluetooth? (y/N) " bluetooth
 case $bluetooth in
-	yes )
+	y )
 
 	echo -e "\n${BLUE}Install BlueZ...${DEFAULT}\n"
 
@@ -906,9 +874,9 @@ case $bluetooth in
 
 	echo -e "\n"
 
-	read -p "Do you want to integrate Bluetooth into a graphical environment? (yes/no) " blueman
+	read -p "Do you want to integrate Bluetooth into a graphical environment? (y/N) " blueman
 	case $blueman in
-			yes )
+			y )
 
 			echo -e "\n${BLUE}Install Blueman...${DEFAULT}\n"
 
@@ -916,9 +884,7 @@ case $bluetooth in
 
 			;;
 
-			no )
-
-
+			n )
 
 			;;
 	esac
@@ -934,9 +900,7 @@ case $bluetooth in
 
 	;;
 
-	no )
-
-	
+	n )
 
 	;;
 esac
@@ -945,9 +909,9 @@ sleep 1
 
 # Configure Printing support
 
-read -p "Do you want to use printers? (yes/no) " printer
+read -p "Do you want to use printers? (y/N) " printer
 case $printer in
-	yes )
+	y )
 
 	echo -e "\n${BLUE}Install CUPS and Tools...${DEFAULT}\n"
 
@@ -955,9 +919,9 @@ case $printer in
 
 	echo -e "\n"
 
-	read -p "Do you want to install a graphical printer program? (yes/no) " printergui
+	read -p "Do you want to install a graphical printer program? (y/N) " printergui
 	case $printergui in
-			yes )
+			y )
 
 			echo -e "\n${BLUE}Install system-config-printer...${DEFAULT}\n"
 
@@ -965,9 +929,7 @@ case $printer in
 
 			;;
 
-			no )
-
-
+			n )
 
 			;;
 	esac
@@ -983,9 +945,7 @@ case $printer in
 
 	;;
 
-	no )
-
-	
+	n )
 
 	;;
 esac
@@ -994,9 +954,9 @@ sleep 1
 
 # Configure Notebook Power Saving
 
-read -p "Do you want to install TLP for power saving (Notebooks only)? (yes/no) " nb_power
+read -p "Do you want to install TLP for power saving (Notebooks only)? (y/N) " nb_power
 case $nb_power in
-	yes )
+	y )
 
 	echo -e "\n${BLUE}Install TLP and PowerTop...${DEFAULT}\n"
 
@@ -1013,9 +973,7 @@ case $nb_power in
 
 	;;
 
-	no )
-
-	
+	n )
 
 	;;
 esac
@@ -1037,6 +995,5 @@ elif [ -f /usr/bin/slim ]; then
 elif [ -f /usr/bin/emptty ]; then
 	ln -sv /etc/sv/emptty /var/service
 fi
-
 
 echo -e "\n${BLUE}Finished.${DEFAULT}\n"
