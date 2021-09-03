@@ -695,7 +695,7 @@ case $xwinsys in
 
 	echo -e "\n${BLUE}Enable D-Bus...${DEFAULT}\n"
 
-	xbps-instally dbus
+	xbps-install -y dbus
 
 	if [ -L /var/service/dbus ]; then
 		echo -e "\nService ${GREEN}dbus ${DEFAULT}already exist. Continue.\n"
@@ -706,7 +706,7 @@ case $xwinsys in
 
 	echo -e "\n${BLUE}Enable elogind...${DEFAULT}\n"
 
-	xbps-instally elogind
+	xbps-install -y elogind
 
 	if [ -L /var/service/elogind ]; then
 		echo -e "\nService ${GREEN}elogind ${DEFAULT}already exist. Continue.\n"
@@ -740,7 +740,7 @@ sleep 1
 echo -e "\n${BLUE}Configure Cron...${DEFAULT}\n"
 echo -e "\nInstall cronie...\n"
 
-xbps-instally cronie
+xbps-install y cronie
 
 echo -e "\n${BLUE}Enable cronie service...${DEFAULT}\n"
 
