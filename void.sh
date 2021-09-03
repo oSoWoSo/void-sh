@@ -42,7 +42,7 @@ echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 echo -e "${BLUE}Install recommended packages...${DEFAULT}\n"
 
-xbps-install -S curl wget unzip zip nano vim gptfdisk mtools mlocate \
+xbps-install curl wget unzip zip nano vim gptfdisk mtools mlocate \
 	ntfs-3g fuse-exfat bash-completion
 
 echo -e "\n${GREEN}Done${DEFAULT}\n"
@@ -53,7 +53,7 @@ sleep 1
 
 echo -e "\n${BLUE}Install development packages...${DEFAULT}\n"
 
-xbps-install -S autoconf automake bison m4 make libtool flex meson ninja
+xbps-install autoconf automake bison m4 make libtool flex meson ninja
 
 echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -67,7 +67,7 @@ case $xwinsys in
 
 	echo -e "\n${BLUE}Install the X Window System...${DEFAULT}\n"
 
-	xbps-install -S xorg-server xorg-server-xwayland xorg-video-drivers xorg-input-drivers \
+	xbps-install xorg-server xorg-server-xwayland xorg-video-drivers xorg-input-drivers \
 		xinit xauth xrandr xrdb xwininfo xdpyinfo xsetroot neofetch
 
 	echo -e "\n${BLUE}Copy configurations...${DEFAULT}\n"
@@ -104,7 +104,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Xfce...${DEFAULT}\n"
 
-		xbps-install -S xfce4-appfinder xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin \
+		xbps-install xfce4-appfinder xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin \
 			xfce4-cpugraph-plugin xfce4-dict xfce4-diskperf-plugin xfce4-fsguard-plugin \
 			xfce4-genmon-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-netload-plugin \
 			xfce4-notifyd xfce4-panel xfce4-panel-appmenu xfce4-places-plugin xfce4-power-manager \
@@ -123,7 +123,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install MATE...${DEFAULT}\n"
 
-		xbps-install -S mate-applets mate-backgrounds mate-calc mate-control-center mate-desktop \
+		xbps-install mate-applets mate-backgrounds mate-calc mate-control-center mate-desktop \
 			mate-icon-theme mate-indicator-applet mate-media mate-menus mate-notification-daemon \
 			mate-panel mate-panel-appmenu mate-screensaver mate-sensors-applet mate-session-manager \
 			mate-settings-daemon mate-system-monitor mate-terminal mate-themes mate-tweak mate-utils \
@@ -139,7 +139,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install GNOME...${DEFAULT}\n"
 
-		xbps-install -S gnome-shell gnome-control-center gnome-tweaks gnome-system-monitor gnome-terminal gdm \
+		xbps-install gnome-shell gnome-control-center gnome-tweaks gnome-system-monitor gnome-terminal gdm \
 			gnome-disk-utility nautilus nautilus-sendto gvfs gvfs-mtp gvfs-gphoto2 totem eog eog-plugins \
 			evince gedit gedit-plugins gnome-video-effects gnome-themes-extra gnome-session gnome-screenshot \
 			gnome-shell-extensions gnome-icon-theme gnome-icon-theme-extras gnome-icon-theme-symbolic \
@@ -155,7 +155,7 @@ case $xwinsys in
 
 			echo -e "\n${BLUE}Install GNOME applications...${DEFAULT}\n"
 
-			xbps-install -S gnome-calendar gnome-clocks gnome-weather evolution gnome-font-viewer \
+			xbps-install gnome-calendar gnome-clocks gnome-weather evolution gnome-font-viewer \
 				gnome-calculator gnome-characters gnome-contacts gnome-documents gnome-maps
 
 			;;
@@ -175,7 +175,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install KDE Plasma...${DEFAULT}\n"
 
-		xbps-install -S plasma-desktop plasma-disks plasma-thunderbolt plasma-systemmonitor plasma-pa plasma-nm \
+		xbps-install plasma-desktop plasma-disks plasma-thunderbolt plasma-systemmonitor plasma-pa plasma-nm \
 			plasma-firewall plasma-browser-integration plasma-vault latte-dock oxygen kdegraphics-thumbnailers \
 			dolphin dolphin-plugins kate5 konsole okular gwenview ark sddm sddm-kcm yakuake spectacle \
 			partitionmanager ffmpegthumbs kde-gtk-config5
@@ -189,7 +189,7 @@ case $xwinsys in
 
 			echo -e "\n${BLUE}Install KDE applications...${DEFAULT}\n"
 
-			xbps-install -S kmail kontact korganizer kaddressbook akregator konversation kcalc kcharselect
+			xbps-install kmail kontact korganizer kaddressbook akregator konversation kcalc kcharselect
 
 			;;
 
@@ -206,7 +206,7 @@ case $xwinsys in
 
 			echo -e "\n${BLUE}Install KDE Connect...${DEFAULT}\n"
 
-			xbps-install -S kdeconnect
+			xbps-install kdeconnect
 
 			;;
 
@@ -225,7 +225,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Budgie...${DEFAULT}\n"
 
-		xbps-install -S budgie-desktop gnome-control-center gnome-system-monitor gnome-terminal nautilus \
+		xbps-install budgie-desktop gnome-control-center gnome-system-monitor gnome-terminal nautilus \
 			nautilus-sendto gnome-keyring lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
 			evince gedit gedit-plugins eog eog-plugins parole gnome-screenshot gnome-disk-utility \
 			gvfs gvfs-mtp gvfs-gphoto2 file-roller
@@ -238,7 +238,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Cinnamon...${DEFAULT}\n"
 
-		xbps-install -S cinnamon gnome-system-monitor gnome-terminal gnome-screenshot gnome-disk-utility \
+		xbps-install cinnamon gnome-system-monitor gnome-terminal gnome-screenshot gnome-disk-utility \
 			gnome-keyring gedit gedit-plugins evince gvfs gvfs-mtp gvfs-gphoto2 parole lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings eog eog-plugins file-roller
 		
@@ -250,7 +250,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install LXQt...${DEFAULT}\n"
 
-		xbps-install -S lxqt-about lxqt-admin lxqt-archiver lxqt-build-tools lxqt-config lxqt-globalkeys lxqt-notificationd \
+		xbps-install lxqt-about lxqt-admin lxqt-archiver lxqt-build-tools lxqt-config lxqt-globalkeys lxqt-notificationd \
 			lxqt-openssh-askpass lxqt-panel lxqt-policykit lxqt-powermanagement lxqt-qtplugin lxqt-runner lxqt-session \
 			lxqt-sudo lxqt-themes obconf-qt openbox pcmanfm-qt lximage-qt FeatherPad qlipper lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings qterminal
@@ -263,7 +263,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Enlightenment...${DEFAULT}\n"
 
-		xbps-install -S enlightenment terminology mousepad gvfs gvfs-mtp gvfs-gphoto2 parole zathura zathura-pdf-poppler \
+		xbps-install enlightenment terminology mousepad gvfs gvfs-mtp gvfs-gphoto2 parole zathura zathura-pdf-poppler \
 			Thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings xarchiver
 
@@ -275,7 +275,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install LXDE...${DEFAULT}\n"
 
-		xbps-install -S lxde-common lxde-icon-theme lxappearance lxinput lxpanel lxrandr lxsession lxtask \
+		xbps-install lxde-common lxde-icon-theme lxappearance lxinput lxpanel lxrandr lxsession lxtask \
 			lxterminal pcmanfm gvfs gvfs-mtp gvfs-gphoto2 viewnior lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings mousepad parole zathura zathura-pdf-poppler openbox obconf \
 			lxappearance-obconf xarchiver
@@ -315,7 +315,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install i3-gaps...${DEFAULT}\n"
 
-		xbps-install -S i3-gaps i3lock i3status i3blocks dunst dmenu feh Thunar \
+		xbps-install i3-gaps i3lock i3status i3blocks dunst dmenu feh Thunar \
 			thunar-volman thunar-archive-plugin thunar-media-tags-plugin xarchiver \
 			lm_sensors acpi playerctl scrot htop xfce4-terminal arandr gvfs gvfs-mtp \
 			gvfs-gphoto2 mousepad xfce4-taskmanager lightdm lightdm-gtk3-greeter \
@@ -329,7 +329,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Openbox...${DEFAULT}\n"
 
-		xbps-install -S openbox obconf lxappearance lxappearance-obconf jgmenu dunst \
+		xbps-install openbox obconf lxappearance lxappearance-obconf jgmenu dunst \
 			feh lxterminal lxrandr lxinput pcmanfm gvfs gvfs-mtp gvfs-gphoto2 \
 			mousepad lxtask scrot htop xarchiver lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings viewnior
@@ -342,7 +342,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Fluxbox...${DEFAULT}\n"
 
-		xbps-install -S fluxbox dunst feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+		xbps-install fluxbox dunst feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad xfce4-terminal scrot htop xarchiver \
 		        lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
 
@@ -354,7 +354,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Bspwm...${DEFAULT}\n"
 
-		xbps-install -S bspwm sxhkd dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+		xbps-install bspwm sxhkd dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
 			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
 
@@ -366,7 +366,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install herbstluftwm...${DEFAULT}\n"
 
-		xbps-install -S herbstluftwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+		xbps-install herbstluftwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
 			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
 
@@ -378,7 +378,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install IceWM...${DEFAULT}\n"
 
-		xbps-install -S icewm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+		xbps-install icewm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
 			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
 
@@ -390,7 +390,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install awesome...${DEFAULT}\n"
 
-		xbps-install -S awesome vicious dunst feh arandr xfce4-terminal Thunar thunar-volman \
+		xbps-install awesome vicious dunst feh arandr xfce4-terminal Thunar thunar-volman \
 				thunar-archive-plugin thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot \
 				htop xarchiver lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
 
@@ -402,7 +402,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install jwm...${DEFAULT}\n"
 
-		xbps-install -S jwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+		xbps-install jwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
 			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
 
@@ -414,7 +414,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install dwm...${DEFAULT}\n"
 
-		xbps-install -S dwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+		xbps-install dwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
 			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
 
@@ -426,7 +426,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install FVWM3...${DEFAULT}\n"
 
-		xbps-install -S fvwm3 feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+		xbps-install fvwm3 feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
 			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
 
@@ -451,7 +451,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install fonts...${DEFAULT}\n"
 
-		xbps-install -S liberation-fonts-ttf dejavu-fonts-ttf \
+		xbps-install liberation-fonts-ttf dejavu-fonts-ttf \
 			ttf-ubuntu-font-family fonts-roboto-ttf
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
@@ -484,7 +484,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Firefox...${DEFAULT}\n"
 
-		xbps-install -S firefox firefox-i18n-en-US firefox-i18n-de
+		xbps-install firefox firefox-i18n-en-US firefox-i18n-de
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -494,7 +494,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Firefox Extended Support Release...${DEFAULT}\n"
 
-		xbps-install -S firefox-esr firefox-esr-i18n-en-US firefox-esr-i18n-de
+		xbps-install firefox-esr firefox-esr-i18n-en-US firefox-esr-i18n-de
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -504,7 +504,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Chromium...${DEFAULT}\n"
 
-		xbps-install -S chromium
+		xbps-install chromium
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -514,7 +514,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install qutebrowser...${DEFAULT}\n"
 
-		xbps-install -S qutebrowser
+		xbps-install qutebrowser
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -524,7 +524,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Falkon...${DEFAULT}\n"
 
-		xbps-install -S falkon
+		xbps-install falkon
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -547,7 +547,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install LibreOffice...${DEFAULT}\n"
 
-		xbps-install -S libreoffice-writer libreoffice-calc libreoffice-impress \
+		xbps-install libreoffice-writer libreoffice-calc libreoffice-impress \
 			libreoffice-draw libreoffice-math libreoffice-base libreoffice-gnome \
 			libreoffice-i18n-en-US libreoffice-i18n-de
 
@@ -572,7 +572,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install GIMP and Inkscape...${DEFAULT}\n"
 
-		xbps-install -S inkscape gimp
+		xbps-install inkscape gimp
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -595,7 +595,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install QEMU and Virt Manager...${DEFAULT}\n"
 
-		xbps-install -S qemu virt-manager libvirt
+		xbps-install qemu virt-manager libvirt
 
 		echo -e "\n${BLUE}Enable libvirtd service...${DEFAULT}\n"
 
@@ -634,7 +634,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install Alacritty...${DEFAULT}\n"
 
-		xbps-install -S alacritty alacritty-terminfo
+		xbps-install alacritty alacritty-terminfo
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -644,7 +644,7 @@ case $xwinsys in
 
 		echo -e "\n${BLUE}Install xterm...${DEFAULT}\n"
 
-		xbps-install -S xterm
+		xbps-install xterm
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -654,7 +654,7 @@ case $xwinsys in
 		
 		echo -e "\n${BLUE}Install LXTerminal...${DEFAULT}\n"
 
-		xbps-install -S lxterminal
+		xbps-install lxterminal
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
@@ -664,7 +664,7 @@ case $xwinsys in
 		
 		echo -e "\n${BLUE}Install Yakuake...${DEFAULT}\n"
 
-		xbps-install -S yakuake
+		xbps-install yakuake
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -674,7 +674,7 @@ case $xwinsys in
 		
 		echo -e "\n${BLUE}Install Sakura...${DEFAULT}\n"
 
-		xbps-install -S sakura
+		xbps-install sakura
 
 		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
@@ -695,7 +695,7 @@ case $xwinsys in
 
 	echo -e "\n${BLUE}Enable D-Bus...${DEFAULT}\n"
 
-	xbps-install -Sy dbus
+	xbps-instally dbus
 
 	if [ -L /var/service/dbus ]; then
 		echo -e "\nService ${GREEN}dbus ${DEFAULT}already exist. Continue.\n"
@@ -706,7 +706,7 @@ case $xwinsys in
 
 	echo -e "\n${BLUE}Enable elogind...${DEFAULT}\n"
 
-	xbps-install -Sy elogind
+	xbps-instally elogind
 
 	if [ -L /var/service/elogind ]; then
 		echo -e "\nService ${GREEN}elogind ${DEFAULT}already exist. Continue.\n"
@@ -740,7 +740,7 @@ sleep 1
 echo -e "\n${BLUE}Configure Cron...${DEFAULT}\n"
 echo -e "\nInstall cronie...\n"
 
-xbps-install -Sy cronie
+xbps-instally cronie
 
 echo -e "\n${BLUE}Enable cronie service...${DEFAULT}\n"
 
@@ -761,7 +761,7 @@ case $pulseaudio in
 
 	echo -e "\n${BLUE}Install PulseAudio...${DEFAULT}\n"
 
-	xbps-install -S pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio \
+	xbps-install pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio \
 		pavucontrol
 
 	echo -e "\n${GREEN}Done${DEFAULT}\n"
@@ -791,7 +791,7 @@ case $netmngt in
 
 	echo -e "\n${BLUE}Install Network Manager...${DEFAULT}\n"
 
-	xbps-install -S NetworkManager NetworkManager-openvpn NetworkManager-openconnect \
+	xbps-install NetworkManager NetworkManager-openvpn NetworkManager-openconnect \
 			NetworkManager-vpnc NetworkManager-l2tp
 	
 	echo -e "\n"
@@ -802,7 +802,7 @@ case $netmngt in
 
 			echo -e "\n${BLUE}Install Network Manager applet...${DEFAULT}\n"
 
-			xbps-install -S network-manager-applet
+			xbps-install network-manager-applet
 					
 			;;
 
@@ -828,7 +828,7 @@ case $netmngt in
 
 	echo -e "\n${BLUE}Install Connman...${DEFAULT}\n"
 
-	xbps-install -S connman connman-ncurses
+	xbps-install connman connman-ncurses
 
 	echo -e "\n${BLUE}Enable Connman service...${DEFAULT}\n"
 
@@ -858,7 +858,7 @@ case $bluetooth in
 
 	echo -e "\n${BLUE}Install BlueZ...${DEFAULT}\n"
 
-	xbps-install -S bluez
+	xbps-install bluez
 
 	echo -e "\n"
 
@@ -868,7 +868,7 @@ case $bluetooth in
 
 			echo -e "\n${BLUE}Install Blueman...${DEFAULT}\n"
 
-			xbps-install -S blueman
+			xbps-install blueman
 
 			;;
 
@@ -907,7 +907,7 @@ case $printer in
 
 	echo -e "\n${BLUE}Install CUPS and Tools...${DEFAULT}\n"
 
-	xbps-install -S cups cups-pk-helper cups-filters foomatic-db foomatic-db-engine
+	xbps-install cups cups-pk-helper cups-filters foomatic-db foomatic-db-engine
 
 	echo -e "\n"
 
@@ -917,7 +917,7 @@ case $printer in
 
 			echo -e "\n${BLUE}Install system-config-printer...${DEFAULT}\n"
 
-			xbps-install -S system-config-printer
+			xbps-install system-config-printer
 
 			;;
 
@@ -956,7 +956,7 @@ case $nb_power in
 
 	echo -e "\n${BLUE}Install TLP and PowerTop...${DEFAULT}\n"
 
-	xbps-install -S tlp tlp-rdw powertop
+	xbps-install tlp tlp-rdw powertop
 
 	echo -e "\n${BLUE}Enable TLP service...${DEFAULT}\n"
 
