@@ -4,16 +4,17 @@
 # - Update the system
 # - Install recommended packages
 # - Install development packages
-# - Install the X Window System (1/10)
-# - Install a Desktop environment (2/10)
-# - Install a Window manager (3/10)
-# - Install fonts (4/10)
-# - Install an internet browser (5/10)
-# - Install LibreOffice (6/10)
-# - Install GIMP + Inkscape (7/10)
-# - Install QEMU + Virt Manager (8/10)
-# - Install a Terminal emulator (9/10)
-# - Enable required services (10/10)
+# - Install the X Window System (1/11)
+# - Install a Desktop environment (2/11)
+# - Install a Display manager (3/11)
+# - Install a Window manager (4/11)
+# - Install fonts (5/11)
+# - Install an internet browser (6/11)
+# - Install LibreOffice (7/11)
+# - Install GIMP + Inkscape (8/11)
+# - Install QEMU + Virt Manager (9/11)
+# - Install a Terminal emulator (10/11)
+# - Enable required services (11/11)
 # - Configure Cron
 # - Configure Audio
 # - Configure Network Manager
@@ -30,47 +31,57 @@ GREEN='\033[01;32m'
 RED='\033[01;31m'
 DEFAULT='\033[00m'
 
+# check if we have UID 0, exit otherwise
+rootcheck () {
+  if [[ $EUID -gt 0 ]]; then
+    echo -e  "${RED}This operation needs super-user privileges. Exiting.${DEFAULT}\n"
+    exit 255
+  fi
+}
+
 # Update the System
 
-echo "\n${BLUE}Checking for updates...${DEFAULT}\n"
+rootcheck
+
+echo -e "\n${BLUE}Checking for updates...${DEFAULT}\n"
 
 xbps-install -Su
 
-echo "\n${GREEN}Done${DEFAULT}\n"
+echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 # Install recommended packages
 
-echo "${BLUE}Install recommended packages...${DEFAULT}\n"
+echo -e "${BLUE}Install recommended packages...${DEFAULT}\n"
 
-xbps-install -S curl wget unzip zip nano vim gptfdisk mtools mlocate \
+xbps-install curl wget unzip zip nano vim gptfdisk mtools mlocate \
 	ntfs-3g fuse-exfat bash-completion
 
-echo "\n${GREEN}Done${DEFAULT}\n"
+echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 sleep 1
 
 # Install development packages
 
-echo "\n${BLUE}Install development packages...${DEFAULT}\n"
+echo -e "\n${BLUE}Install development packages...${DEFAULT}\n"
 
-xbps-install -S autoconf automake bison m4 make libtool flex meson ninja
+xbps-install autoconf automake bison m4 make libtool flex meson ninja
 
-echo "\n${GREEN}Done${DEFAULT}\n"
+echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 sleep 1
 
 # Install the X Window System
 
-read -p "Do you want to use a graphical environment? (yes/no) " xwinsys
+read -p "Do you want to use a graphical environment? (y/N) " xwinsys
 case $xwinsys in
-	yes )
+	y )
 
-	echo "\n${BLUE}Install the X Window System...${DEFAULT}\n"
+	echo -e "\n${BLUE}Install the X Window System...${DEFAULT}\n"
 
-	xbps-install -S xorg-server xorg-server-xwayland xorg-video-drivers xorg-input-drivers \
+	xbps-install xorg-server xorg-server-xwayland xorg-video-drivers xorg-input-drivers \
 		xinit xauth xrandr xrdb xwininfo xdpyinfo xsetroot neofetch
 
-	echo "\n${BLUE}Copy configurations...${DEFAULT}\n"
+	echo -e "\n${BLUE}Copy configurations...${DEFAULT}\n"
 
 	if [ ! -d /etc/X11/xorg.conf.d ]; then
 		mkdir -p /etc/X11/xorg.conf.d
@@ -79,14 +90,14 @@ case $xwinsys in
 	cp -r 00-keyboard.conf /etc/X11/xorg.conf.d/
 	cp -r 20-libinput.conf /etc/X11/xorg.conf.d/
 
-	echo "\n${GREEN}Done${DEFAULT}\n"
+	echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 	sleep 1
 
 	# Install a Desktop environment
 
-	echo "\n${BLUE}Install a Desktop environment...${DEFAULT}\n"
-	echo "Possible (type in number): \n
+	echo -e "\n${BLUE}Install a Desktop environment...${DEFAULT}\n"
+	echo -e "Possible (type in number): \n
 	- 1 Xfce
 	- 2 MATE
 	- 3 GNOME
@@ -102,9 +113,9 @@ case $xwinsys in
 	case $desktop in
 		1 ) 
 
-		echo "\n${BLUE}Install Xfce...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Xfce...${DEFAULT}\n"
 
-		xbps-install -S xfce4-appfinder xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin \
+		xbps-install xfce4-appfinder xfce4-battery-plugin xfce4-clipman-plugin xfce4-cpufreq-plugin \
 			xfce4-cpugraph-plugin xfce4-dict xfce4-diskperf-plugin xfce4-fsguard-plugin \
 			xfce4-genmon-plugin xfce4-mailwatch-plugin xfce4-mpc-plugin xfce4-netload-plugin \
 			xfce4-notifyd xfce4-panel xfce4-panel-appmenu xfce4-places-plugin xfce4-power-manager \
@@ -115,15 +126,15 @@ case $xwinsys in
 			xarchiver mousepad xfwm4 xfdesktop lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
 			zathura zathura-pdf-poppler gvfs gvfs-mtp gvfs-gphoto2 xfce-polkit
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 		
 		2 ) 
 
-		echo "\n${BLUE}Install MATE...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install MATE...${DEFAULT}\n"
 
-		xbps-install -S mate-applets mate-backgrounds mate-calc mate-control-center mate-desktop \
+		xbps-install mate-applets mate-backgrounds mate-calc mate-control-center mate-desktop \
 			mate-icon-theme mate-indicator-applet mate-media mate-menus mate-notification-daemon \
 			mate-panel mate-panel-appmenu mate-screensaver mate-sensors-applet mate-session-manager \
 			mate-settings-daemon mate-system-monitor mate-terminal mate-themes mate-tweak mate-utils \
@@ -131,162 +142,203 @@ case $xwinsys in
 			caja-xattr-tags eom atril lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
 			gvfs gvfs-mtp gvfs-gphoto2 engrampa mate-power-manager mate-polkit
 		
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 		
 		3 )
 
-		echo "\n${BLUE}Install GNOME...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install GNOME...${DEFAULT}\n"
 
-		xbps-install -S gnome-shell gnome-control-center gnome-tweaks gnome-system-monitor gnome-terminal gdm \
+		xbps-install gnome-shell gnome-control-center gnome-tweaks gnome-system-monitor gnome-terminal gdm \
 			gnome-disk-utility nautilus nautilus-sendto gvfs gvfs-mtp gvfs-gphoto2 totem eog eog-plugins \
 			evince gedit gedit-plugins gnome-video-effects gnome-themes-extra gnome-session gnome-screenshot \
 			gnome-shell-extensions gnome-icon-theme gnome-icon-theme-extras gnome-icon-theme-symbolic \
 			gnome-backgrounds file-roller chrome-gnome-shell
 					
-		echo "\n${BLUE}GNOME Applications${DEFAULT}\n"
-		echo "Includes: GNOME Calendar, GNOME Clocks, GNOME Weather, Evolution, GNOME Font Viewer,"
-		echo "GNOME Calculator, GNOME Characters, GNOME Contacts, GNOME Documents, GNOME Maps\n"
+		echo -e "\n${BLUE}GNOME Applications${DEFAULT}\n"
+		echo -e "Includes: GNOME Calendar, GNOME Clocks, GNOME Weather, Evolution, GNOME Font Viewer,"
+		echo -e "GNOME Calculator, GNOME Characters, GNOME Contacts, GNOME Documents, GNOME Maps\n"
 
-		read -p "Do you want to install GNOME applications? (yes/no) " gnomeapps
+		read -p "Do you want to install GNOME applications? (y/N) " gnomeapps
 		case $gnomeapps in
-			yes )
+			y )
 
-			echo "\n${BLUE}Install GNOME applications...${DEFAULT}\n"
+			echo -e "\n${BLUE}Install GNOME applications...${DEFAULT}\n"
 
-			xbps-install -S gnome-calendar gnome-clocks gnome-weather evolution gnome-font-viewer \
+			xbps-install gnome-calendar gnome-clocks gnome-weather evolution gnome-font-viewer \
 				gnome-calculator gnome-characters gnome-contacts gnome-documents gnome-maps
 
 			;;
 		
-			no )
-
-			continue
+			n )
 
 			;;
 		esac
 		
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 		
 		4 )
 
-		echo "\n${BLUE}Install KDE Plasma...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install KDE Plasma...${DEFAULT}\n"
 
-		xbps-install -S plasma-desktop plasma-disks plasma-thunderbolt plasma-systemmonitor plasma-pa plasma-nm \
+		xbps-install plasma-desktop plasma-disks plasma-thunderbolt plasma-systemmonitor plasma-pa plasma-nm \
 			plasma-firewall plasma-browser-integration plasma-vault latte-dock oxygen kdegraphics-thumbnailers \
 			dolphin dolphin-plugins kate5 konsole okular gwenview ark sddm sddm-kcm yakuake spectacle \
 			partitionmanager ffmpegthumbs kde-gtk-config5
 
-		echo "\n${BLUE}KDE Applications${DEFAULT}\n"
-		echo "Includes: KMail, Kontact, KOrganizer, KAddressbook, Akregator, Konversation, KCalc, KCharSelect\n"
+		echo -e "\n${BLUE}KDE Applications${DEFAULT}\n"
+		echo -e "Includes: KMail, Kontact, KOrganizer, KAddressbook, Akregator, Konversation, KCalc, KCharSelect\n"
 
-		read -p "Do you want to install KDE applications? (yes/no) " kdeapps
+		read -p "Do you want to install KDE applications? (y/N) " kdeapps
 		case $kdeapps in
-			yes )
+			y )
 
-			echo "\n${BLUE}Install KDE applications...${DEFAULT}\n"
+			echo -e "\n${BLUE}Install KDE applications...${DEFAULT}\n"
 
-			xbps-install -S kmail kontact korganizer kaddressbook akregator konversation kcalc kcharselect
+			xbps-install kmail kontact korganizer kaddressbook akregator konversation kcalc kcharselect
 
 			;;
 
-			no )
-
-			continue
+			n )
 
 			;;
 		esac
 
-		read -p "Do you want to use KDE Connect? (yes/no) " kdeconnect
+		read -p "Do you want to use KDE Connect? (y/N) " kdeconnect
 		case $kdeconnect in
-			yes )
+			y )
 
-			echo "\n${BLUE}Install KDE Connect...${DEFAULT}\n"
+			echo -e "\n${BLUE}Install KDE Connect...${DEFAULT}\n"
 
-			xbps-install -S kdeconnect
+			xbps-install kdeconnect
 
 			;;
 
-			no )
-
-			continue
+			n )
 
 			;;
 		esac
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		5 )
 
-		echo "\n${BLUE}Install Budgie...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Budgie...${DEFAULT}\n"
 
-		xbps-install -S budgie-desktop gnome-control-center gnome-system-monitor gnome-terminal nautilus \
+		xbps-install budgie-desktop gnome-control-center gnome-system-monitor gnome-terminal nautilus \
 			nautilus-sendto gnome-keyring lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings \
 			evince gedit gedit-plugins eog eog-plugins parole gnome-screenshot gnome-disk-utility \
 			gvfs gvfs-mtp gvfs-gphoto2 file-roller
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		6 )
 
-		echo "\n${BLUE}Install Cinnamon...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Cinnamon...${DEFAULT}\n"
 
-		xbps-install -S cinnamon gnome-system-monitor gnome-terminal gnome-screenshot gnome-disk-utility \
+		xbps-install cinnamon gnome-system-monitor gnome-terminal gnome-screenshot gnome-disk-utility \
 			gnome-keyring gedit gedit-plugins evince gvfs gvfs-mtp gvfs-gphoto2 parole lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings eog eog-plugins file-roller
 		
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		7 )
 
-		echo "\n${BLUE}Install LXQt...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install LXQt...${DEFAULT}\n"
 
-		xbps-install -S lxqt-about lxqt-admin lxqt-archiver lxqt-build-tools lxqt-config lxqt-globalkeys lxqt-notificationd \
+		xbps-install lxqt-about lxqt-admin lxqt-archiver lxqt-build-tools lxqt-config lxqt-globalkeys lxqt-notificationd \
 			lxqt-openssh-askpass lxqt-panel lxqt-policykit lxqt-powermanagement lxqt-qtplugin lxqt-runner lxqt-session \
 			lxqt-sudo lxqt-themes obconf-qt openbox pcmanfm-qt lximage-qt FeatherPad qlipper lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings qterminal
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		8 )
 
-		echo "\n${BLUE}Install Enlightenment...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Enlightenment...${DEFAULT}\n"
 
-		xbps-install -S enlightenment terminology mousepad gvfs gvfs-mtp gvfs-gphoto2 parole zathura zathura-pdf-poppler \
+		xbps-install enlightenment terminology mousepad gvfs gvfs-mtp gvfs-gphoto2 parole zathura zathura-pdf-poppler \
 			Thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings xarchiver
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		9 )
 
-		echo "\n${BLUE}Install LXDE...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install LXDE...${DEFAULT}\n"
 
-		xbps-install -S lxde-common lxde-icon-theme lxappearance lxinput lxpanel lxrandr lxsession lxtask \
+		xbps-install lxde-common lxde-icon-theme lxappearance lxinput lxpanel lxrandr lxsession lxtask \
 			lxterminal pcmanfm gvfs gvfs-mtp gvfs-gphoto2 viewnior lightdm lightdm-gtk3-greeter \
 			lightdm-gtk-greeter-settings mousepad parole zathura zathura-pdf-poppler openbox obconf \
 			lxappearance-obconf xarchiver
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 		
 		0 ) 
+			
+		;;
+	esac
 
-		continue
+	sleep 1
+
+	# Install display manager
+	
+	echo -e "\n${BLUE}Install a display manageer...${DEFAULT}\n"
+	echo -e "Possible (type in number): \n
+	- 1 LightDM
+	- 2 emptty
+	- 3 slim
+	- 0 none\n"
+	
+	read -p "Which display manager do you want? " displaymanager
+	case $displaymanager in
+
+		1 )
+		
+		echo -e "\n${BLUE}Install LightDM...${DEFAULT}\n"		
+		
+		xbps-install lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings
+		
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
+			
+		;;
+		
+		2 )
+
+		echo -e "\n${BLUE}Install emptty...${DEFAULT}\n"		
+
+		xbps-install emptty
+
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
+					
+		;;
+
+		3 )
+
+		echo -e "\n${BLUE}Install slim...${DEFAULT}\n"		
+
+		xbps-install slim
+
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
+					
+		;;
+		
+		0 ) 
 			
 		;;
 	esac
@@ -295,8 +347,8 @@ case $xwinsys in
 
 	# Install a Window manager
 	
-	echo "\n${BLUE}Install a Window Manager...${DEFAULT}\n"
-	echo "Possible (type in number): \n
+	echo -e "\n${BLUE}Install a Window Manager...${DEFAULT}\n"
+	echo -e "Possible (type in number): \n
 	- 1 i3-gaps
 	- 2 Openbox
 	- 3 Fluxbox
@@ -313,130 +365,120 @@ case $xwinsys in
 	case $windowmanager in
 		1 ) 
 
-		echo "\n${BLUE}Install i3-gaps...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install i3-gaps...${DEFAULT}\n"
 
-		xbps-install -S i3-gaps i3lock i3status i3blocks dunst dmenu feh Thunar \
+		xbps-install i3-gaps i3lock i3status i3blocks dunst dmenu feh Thunar \
 			thunar-volman thunar-archive-plugin thunar-media-tags-plugin xarchiver \
 			lm_sensors acpi playerctl scrot htop xfce4-terminal arandr gvfs gvfs-mtp \
-			gvfs-gphoto2 mousepad xfce4-taskmanager lightdm lightdm-gtk3-greeter \
-			lightdm-gtk-greeter-settings viewnior
+			gvfs-gphoto2 mousepad xfce4-taskmanager viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 
 		2 )
 
-		echo "\n${BLUE}Install Openbox...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Openbox...${DEFAULT}\n"
 
-		xbps-install -S openbox obconf lxappearance lxappearance-obconf jgmenu dunst \
+		xbps-install openbox obconf lxappearance lxappearance-obconf jgmenu dunst \
 			feh lxterminal lxrandr lxinput pcmanfm gvfs gvfs-mtp gvfs-gphoto2 \
-			mousepad lxtask scrot htop xarchiver lightdm lightdm-gtk3-greeter \
-			lightdm-gtk-greeter-settings viewnior
+			mousepad lxtask scrot htop xarchiver viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 		
 		3 )
 
-		echo "\n${BLUE}Install Fluxbox...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Fluxbox...${DEFAULT}\n"
 
-		xbps-install -S fluxbox dunst feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+		xbps-install fluxbox dunst feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad xfce4-terminal scrot htop xarchiver \
-		        lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+		        viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		4 )
 
-		echo "\n${BLUE}Install Bspwm...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Bspwm...${DEFAULT}\n"
 
-		xbps-install -S bspwm sxhkd dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+		xbps-install bspwm sxhkd dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		5 )
 
-		echo "\n${BLUE}Install herbstluftwm...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install herbstluftwm...${DEFAULT}\n"
 
-		xbps-install -S herbstluftwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+		xbps-install herbstluftwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		6 )
 
-		echo "\n${BLUE}Install IceWM...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install IceWM...${DEFAULT}\n"
 
-		xbps-install -S icewm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+		xbps-install icewm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		7 )
 
-		echo "\n${BLUE}Install awesome...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install awesome...${DEFAULT}\n"
 
-		xbps-install -S awesome vicious dunst feh arandr xfce4-terminal Thunar thunar-volman \
+		xbps-install awesome vicious dunst feh arandr xfce4-terminal Thunar thunar-volman \
 				thunar-archive-plugin thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot \
-				htop xarchiver lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+				htop xarchiver viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		8 )
 
-		echo "\n${BLUE}Install jwm...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install jwm...${DEFAULT}\n"
 
-		xbps-install -S jwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+		xbps-install jwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		9 )
 
-		echo "\n${BLUE}Install dwm...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install dwm...${DEFAULT}\n"
 
-		xbps-install -S dwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+		xbps-install dwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		10 )
 
-		echo "\n${BLUE}Install FVWM3...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install FVWM3...${DEFAULT}\n"
 
-		xbps-install -S fvwm3 feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
-			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver lightdm \
-			lightdm-gtk3-greeter lightdm-gtk-greeter-settings viewnior
+		xbps-install fvwm3 feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
+			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		0 ) 
-
-		continue
 			
 		;;
 	esac
@@ -445,22 +487,20 @@ case $xwinsys in
 
 	# Install fonts
 
-	read -p "Do you want to install some fonts? (yes/no) " fonts
+	read -p "Do you want to install some fonts? (y/N) " fonts
 	case $fonts in
-		yes ) 
+		y ) 
 
-		echo "\n${BLUE}Install fonts...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install fonts...${DEFAULT}\n"
 
-		xbps-install -S liberation-fonts-ttf dejavu-fonts-ttf \
+		xbps-install liberation-fonts-ttf dejavu-fonts-ttf \
 			ttf-ubuntu-font-family fonts-roboto-ttf
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 		
-		no ) 
-
-		continue
+		n ) 
 			
 		;;
 	esac
@@ -469,8 +509,8 @@ case $xwinsys in
 
 	# Install an Internet browser
 
-	echo "\n${BLUE}Install an Internet browser...${DEFAULT}\n"
-	echo "Possible (type in number): \n
+	echo -e "\n${BLUE}Install an Internet browser...${DEFAULT}\n"
+	echo -e "Possible (type in number): \n
 	- 1 Firefox
 	- 2 Firefox-ESR
 	- 3 Chromium
@@ -482,57 +522,55 @@ case $xwinsys in
 	case $browser in
 		1 )
 
-		echo "\n${BLUE}Install Firefox...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Firefox...${DEFAULT}\n"
 
-		xbps-install -S firefox firefox-i18n-en-US firefox-i18n-de
+		xbps-install firefox firefox-i18n-en-US firefox-i18n-de
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 
 		2 ) 
 
-		echo "\n${BLUE}Install Firefox Extended Support Release...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Firefox Extended Support Release...${DEFAULT}\n"
 
-		xbps-install -S firefox-esr firefox-esr-i18n-en-US firefox-esr-i18n-de
+		xbps-install firefox-esr firefox-esr-i18n-en-US firefox-esr-i18n-de
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 
 		3 ) 
 
-		echo "\n${BLUE}Install Chromium...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Chromium...${DEFAULT}\n"
 
-		xbps-install -S chromium
+		xbps-install chromium
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 
 		4 )
 
-		echo "\n${BLUE}Install qutebrowser...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install qutebrowser...${DEFAULT}\n"
 
-		xbps-install -S qutebrowser
+		xbps-install qutebrowser
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		5 )
 
-		echo "\n${BLUE}Install Falkon...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Falkon...${DEFAULT}\n"
 
-		xbps-install -S falkon
+		xbps-install falkon
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 		
 		0 ) 
-
-		continue
 			
 		;;
 	esac
@@ -541,23 +579,21 @@ case $xwinsys in
 
 	# Install LibreOffice
 
-	read -p "Do you want to install LibreOffice? (yes/no) " libreoffice
+	read -p "Do you want to install LibreOffice? (y/N) " libreoffice
 	case $libreoffice in
-		yes )
+		y )
 
-		echo "\n${BLUE}Install LibreOffice...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install LibreOffice...${DEFAULT}\n"
 
-		xbps-install -S libreoffice-writer libreoffice-calc libreoffice-impress \
+		xbps-install libreoffice-writer libreoffice-calc libreoffice-impress \
 			libreoffice-draw libreoffice-math libreoffice-base libreoffice-gnome \
 			libreoffice-i18n-en-US libreoffice-i18n-de
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
-		no )
-
-		continue
+		n )
 
 		;;
 	esac
@@ -566,21 +602,19 @@ case $xwinsys in
 
 	# Install GIMP + Inkscape
 
-	read -p "Do you want to install GIMP and Inkscape? (yes/no) " gimpinkscape
+	read -p "Do you want to install GIMP and Inkscape? (y/N) " gimpinkscape
 	case $gimpinkscape in
-		yes )
+		y )
 
-		echo "\n${BLUE}Install GIMP and Inkscape...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install GIMP and Inkscape...${DEFAULT}\n"
 
-		xbps-install -S inkscape gimp
+		xbps-install inkscape gimp
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
-		no )
-
-		continue
+		n )
 
 		;;
 	esac
@@ -589,28 +623,26 @@ case $xwinsys in
 
 	# Install QEMU + Virt Manager
 
-	read -p "Do you want to install QEMU and Virt Manager? (yes/no) " qemuvirt
+	read -p "Do you want to install QEMU and Virt Manager? (y/N) " qemuvirt
 	case $qemuvirt in
-		yes )
+		y )
 
-		echo "\n${BLUE}Install QEMU and Virt Manager...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install QEMU and Virt Manager...${DEFAULT}\n"
 
-		xbps-install -S qemu virt-manager libvirt
+		xbps-install qemu virt-manager libvirt
 
-		echo "\n${BLUE}Enable libvirtd service...${DEFAULT}\n"
+		echo -e "\n${BLUE}Enable libvirtd service...${DEFAULT}\n"
 
 		if [ -L /var/service/libvirtd ]; then
-			echo "\nService ${GREEN}libvirtd ${DEFAULT}already exist. Continue.\n"
+			echo -e "\nService ${GREEN}libvirtd ${DEFAULT}already exist. Continue.\n"
 		else
 			ln -sv /etc/sv/libvirtd /var/service
-			echo "\n${GREEN}Done${DEFAULT}\n"
+			echo -e "\n${GREEN}Done${DEFAULT}\n"
 		fi
 
 		;;
 
-		no )
-
-		continue
+		n )
 
 		;;
 	esac
@@ -619,8 +651,8 @@ case $xwinsys in
 
 	# Install a Terminal emulator
 
-	echo "\n${BLUE}Install a Terminal emulator...${DEFAULT}\n"
-	echo "Possible (type in number): \n
+	echo -e "\n${BLUE}Install a Terminal emulator...${DEFAULT}\n"
+	echo -e "Possible (type in number): \n
 	- 1 Alacritty
 	- 2 xterm
 	- 3 LXTerminal
@@ -632,57 +664,55 @@ case $xwinsys in
 	case $terminal in
 		1 ) 
 
-		echo "\n${BLUE}Install Alacritty...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Alacritty...${DEFAULT}\n"
 
-		xbps-install -S alacritty alacritty-terminfo
+		xbps-install alacritty alacritty-terminfo
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 		
 		2 ) 
 
-		echo "\n${BLUE}Install xterm...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install xterm...${DEFAULT}\n"
 
-		xbps-install -S xterm
+		xbps-install xterm
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 		
 		3 ) 
 		
-		echo "\n${BLUE}Install LXTerminal...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install LXTerminal...${DEFAULT}\n"
 
-		xbps-install -S lxterminal
+		xbps-install lxterminal
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 			
 		;;
 
 		4 )
 		
-		echo "\n${BLUE}Install Yakuake...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Yakuake...${DEFAULT}\n"
 
-		xbps-install -S yakuake
+		xbps-install yakuake
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		5 )
 		
-		echo "\n${BLUE}Install Sakura...${DEFAULT}\n"
+		echo -e "\n${BLUE}Install Sakura...${DEFAULT}\n"
 
-		xbps-install -S sakura
+		xbps-install sakura
 
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 		;;
 
 		0 )
-
-		continue
 
 		;;
 	esac
@@ -691,44 +721,42 @@ case $xwinsys in
 
 	# Enable required services
 
-	echo "\n${BLUE}Enable required services...${DEFAULT}\n"
+	echo -e "\n${BLUE}Enable required services...${DEFAULT}\n"
 
-	echo "\n${BLUE}Enable D-Bus...${DEFAULT}\n"
+	echo -e "\n${BLUE}Enable D-Bus...${DEFAULT}\n"
 
-	xbps-install -Sy dbus
+	xbps-install -y dbus
 
 	if [ -L /var/service/dbus ]; then
-		echo "\nService ${GREEN}dbus ${DEFAULT}already exist. Continue.\n"
+		echo -e "\nService ${GREEN}dbus ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -s /etc/sv/dbus /var/service
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
-	echo "\n${BLUE}Enable elogind...${DEFAULT}\n"
+	echo -e "\n${BLUE}Enable elogind...${DEFAULT}\n"
 
-	xbps-install -Sy elogind
+	xbps-install -y elogind
 
 	if [ -L /var/service/elogind ]; then
-		echo "\nService ${GREEN}elogind ${DEFAULT}already exist. Continue.\n"
+		echo -e "\nService ${GREEN}elogind ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -s /etc/sv/elogind /var/service
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
-	echo "\n${BLUE}Enable Polkit...${DEFAULT}\n"
+	echo -e "\n${BLUE}Enable Polkit...${DEFAULT}\n"
 
 	if [ -L /var/service/polkitd ]; then
-		echo "\nService ${GREEN}polkitd ${DEFAULT}already exist. Continue.\n"
+		echo -e "\nService ${GREEN}polkitd ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -s /etc/sv/polkitd /var/service
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
 	;;
 
-	no )
-
-	continue
+	n )
 
 	;;
 esac
@@ -737,40 +765,38 @@ sleep 1
 
 # Configure Cron
 
-echo "\n${BLUE}Configure Cron...${DEFAULT}\n"
-echo "\nInstall cronie...\n"
+echo -e "\n${BLUE}Configure Cron...${DEFAULT}\n"
+echo -e "\nInstall cronie...\n"
 
-xbps-install -Sy cronie
+xbps-install -y cronie
 
-echo "\n${BLUE}Enable cronie service...${DEFAULT}\n"
+echo -e "\n${BLUE}Enable cronie service...${DEFAULT}\n"
 
 if [ -L /var/service/cronie ]; then
-	echo "\nService ${GREEN}cronie ${DEFAULT}already exist. Continue.\n"
+	echo -e "\nService ${GREEN}cronie ${DEFAULT}already exist. Continue.\n"
 else
 	ln -sv /etc/sv/cronie /var/service
-	echo "\n${GREEN}Done${DEFAULT}\n"
+	echo -e "\n${GREEN}Done${DEFAULT}\n"
 fi
 
 sleep 1
 
 # Configure Audio
 
-read -p "Do you want to install PulseAudio for audio? (yes/no) " pulseaudio
+read -p "Do you want to install PulseAudio for audio? (y/N) " pulseaudio
 case $pulseaudio in
-	yes )
+	y )
 
-	echo "\n${BLUE}Install PulseAudio...${DEFAULT}\n"
+	echo -e "\n${BLUE}Install PulseAudio...${DEFAULT}\n"
 
-	xbps-install -S pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio \
+	xbps-install pulseaudio pulseaudio-utils pulsemixer alsa-plugins-pulseaudio \
 		pavucontrol
 
-	echo "\n${GREEN}Done${DEFAULT}\n"
+	echo -e "\n${GREEN}Done${DEFAULT}\n"
 
 	;;
 
-	no )
-
-	continue
+	n )
 
 	;;
 esac
@@ -779,8 +805,8 @@ sleep 1
 
 # Configure Network Management
 
-echo "\n${BLUE}Configure Network Management...${DEFAULT}\n"
-echo "\nPossible (type in number): \n
+echo -e "\n${BLUE}Configure Network Management...${DEFAULT}\n"
+echo -e "\nPossible (type in number): \n
 - 1 Network Manager
 - 2 Connman
 - 0 None\n"
@@ -789,61 +815,57 @@ read -p "Which Network Management tool do you want to use? " netmngt
 case $netmngt in
 	1 )
 
-	echo "\n${BLUE}Install Network Manager...${DEFAULT}\n"
+	echo -e "\n${BLUE}Install Network Manager...${DEFAULT}\n"
 
-	xbps-install -S NetworkManager NetworkManager-openvpn NetworkManager-openconnect \
+	xbps-install NetworkManager NetworkManager-openvpn NetworkManager-openconnect \
 			NetworkManager-vpnc NetworkManager-l2tp
 	
-	echo "\n"
+	echo -e "\n"
 
-	read -p "Do you want to integrate Network Manager into a graphical environment? (yes/no) " nmapplet
+	read -p "Do you want to integrate Network Manager into a graphical environment? (y/N) " nmapplet
 	case $nmapplet in
-			yes ) 
+			y ) 
 
-			echo "\n${BLUE}Install Network Manager applet...${DEFAULT}\n"
+			echo -e "\n${BLUE}Install Network Manager applet...${DEFAULT}\n"
 
-			xbps-install -S network-manager-applet
+			xbps-install network-manager-applet
 					
 			;;
 
-			no )
-
-			continue
+			n )
 
 			;;
 	esac
 
-	echo "\n${BLUE}Enable Network Manager service...${DEFAULT}\n"
+	echo -e "\n${BLUE}Enable Network Manager service...${DEFAULT}\n"
 
 	if [ -L /var/service/NetworkManager ]; then
-		echo "\nService ${GREEN}NetworkManager ${DEFAULT}already exist. Continue.\n"
+		echo -e "\nService ${GREEN}NetworkManager ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/NetworkManager /var/service
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
 	;;
 
 	2 )
 
-	echo "\n${BLUE}Install Connman...${DEFAULT}\n"
+	echo -e "\n${BLUE}Install Connman...${DEFAULT}\n"
 
-	xbps-install -S connman connman-ncurses
+	xbps-install connman connman-ncurses
 
-	echo "\n${BLUE}Enable Connman service...${DEFAULT}\n"
+	echo -e "\n${BLUE}Enable Connman service...${DEFAULT}\n"
 
 	if [ -L /var/service/connmand ]; then
-		echo "\nService ${GREEN}connmand ${DEFAULT}already exist. Continue.\n"
+		echo -e "\nService ${GREEN}connmand ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/connmand /var/service
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
 	;;
 
 	0 )
-
-	continue
 
 	;;
 esac
@@ -852,47 +874,43 @@ sleep 1
 
 # Configure Bluetooth
 
-read -p "Do you want to use Bluetooth? (yes/no) " bluetooth
+read -p "Do you want to use Bluetooth? (y/N) " bluetooth
 case $bluetooth in
-	yes )
+	y )
 
-	echo "\n${BLUE}Install BlueZ...${DEFAULT}\n"
+	echo -e "\n${BLUE}Install BlueZ...${DEFAULT}\n"
 
-	xbps-install -S bluez
+	xbps-install bluez
 
-	echo "\n"
+	echo -e "\n"
 
-	read -p "Do you want to integrate Bluetooth into a graphical environment? (yes/no) " blueman
+	read -p "Do you want to integrate Bluetooth into a graphical environment? (y/N) " blueman
 	case $blueman in
-			yes )
+			y )
 
-			echo "\n${BLUE}Install Blueman...${DEFAULT}\n"
+			echo -e "\n${BLUE}Install Blueman...${DEFAULT}\n"
 
-			xbps-install -S blueman
+			xbps-install blueman
 
 			;;
 
-			no )
-
-			continue
+			n )
 
 			;;
 	esac
 
-	echo "\n${BLUE}Enable Bluetooth service...${DEFAULT}\n"
+	echo -e "\n${BLUE}Enable Bluetooth service...${DEFAULT}\n"
 
 	if [ -L /var/service/bluetoothd ]; then
-		echo "\nService ${GREEN}bluetoothd ${DEFAULT}already exist. Continue.\n"
+		echo -e "\nService ${GREEN}bluetoothd ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/bluetoothd /var/service
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
 	;;
 
-	no )
-
-	continue
+	n )
 
 	;;
 esac
@@ -901,47 +919,43 @@ sleep 1
 
 # Configure Printing support
 
-read -p "Do you want to use printers? (yes/no) " printer
+read -p "Do you want to use printers? (y/N) " printer
 case $printer in
-	yes )
+	y )
 
-	echo "\n${BLUE}Install CUPS and Tools...${DEFAULT}\n"
+	echo -e "\n${BLUE}Install CUPS and Tools...${DEFAULT}\n"
 
-	xbps-install -S cups cups-pk-helper cups-filters foomatic-db foomatic-db-engine
+	xbps-install cups cups-pk-helper cups-filters foomatic-db foomatic-db-engine
 
-	echo "\n"
+	echo -e "\n"
 
-	read -p "Do you want to install a graphical printer program? (yes/no) " printergui
+	read -p "Do you want to install a graphical printer program? (y/N) " printergui
 	case $printergui in
-			yes )
+			y )
 
-			echo "\n${BLUE}Install system-config-printer...${DEFAULT}\n"
+			echo -e "\n${BLUE}Install system-config-printer...${DEFAULT}\n"
 
-			xbps-install -S system-config-printer
+			xbps-install system-config-printer
 
 			;;
 
-			no )
-
-			continue
+			n )
 
 			;;
 	esac
 
-	echo "\n${BLUE}Enable CUPS service...${DEFAULT}\n"
+	echo -e "\n${BLUE}Enable CUPS service...${DEFAULT}\n"
 
 	if [ -L /var/service/cupsd ]; then
-		echo "\nService ${GREEN}cupsd ${DEFAULT}already exist. Continue.\n"
+		echo -e "\nService ${GREEN}cupsd ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/cupsd /var/service
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
 	;;
 
-	no )
-
-	continue
+	n )
 
 	;;
 esac
@@ -950,28 +964,26 @@ sleep 1
 
 # Configure Notebook Power Saving
 
-read -p "Do you want to install TLP for power saving (Notebooks only)? (yes/no) " nb_power
+read -p "Do you want to install TLP for power saving (Notebooks only)? (y/N) " nb_power
 case $nb_power in
-	yes )
+	y )
 
-	echo "\n${BLUE}Install TLP and PowerTop...${DEFAULT}\n"
+	echo -e "\n${BLUE}Install TLP and PowerTop...${DEFAULT}\n"
 
-	xbps-install -S tlp tlp-rdw powertop
+	xbps-install tlp tlp-rdw powertop
 
-	echo "\n${BLUE}Enable TLP service...${DEFAULT}\n"
+	echo -e "\n${BLUE}Enable TLP service...${DEFAULT}\n"
 
 	if [ -L /var/service/tlp ]; then
-		echo "\nService ${GREEN}tlp ${DEFAULT}already exist. Continue.\n"
+		echo -e "\nService ${GREEN}tlp ${DEFAULT}already exist. Continue.\n"
 	else
 		ln -sv /etc/sv/tlp /var/service
-		echo "\n${GREEN}Done${DEFAULT}\n"
+		echo -e "\n${GREEN}Done${DEFAULT}\n"
 	fi
 
 	;;
 
-	no )
-
-	continue
+	n )
 
 	;;
 esac
@@ -980,7 +992,7 @@ sleep 1
 
 # Configure the Display manager
 
-echo "\n${BLUE}Check if a display manager exist. If yes, enable it.${DEFAULT}\n"
+echo -e "\n${BLUE}Check if a display manager exist. If yes, enable it.${DEFAULT}\n"
 
 if [ -f /usr/bin/lightdm ]; then
 	ln -sv /etc/sv/lightdm /var/service
@@ -990,6 +1002,8 @@ elif [ -f /usr/bin/gdm ]; then
 	ln -sv /etc/sv/gdm /var/service
 elif [ -f /usr/bin/slim ]; then
 	ln -sv /etc/sv/slim /var/service
+elif [ -f /usr/bin/emptty ]; then
+	ln -sv /etc/sv/emptty /var/service
 fi
 
-echo "\n${BLUE}Finished.${DEFAULT}\n"
+echo -e "\n${BLUE}Finished.${DEFAULT}\n"
