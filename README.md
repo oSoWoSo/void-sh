@@ -4,13 +4,14 @@ void-sh is a program written in Bash that configures Void Linux.
 
 ### Content
 
+- Update the system
 - Install recommended packages
 - Install development packages
 - Install the X Window System (1/10) (optional)
 - Install a Desktop environment (2/10) (optional)
     - Xfce, MATE, GNOME, KDE Plasma, Budgie, Cinnamon, LXQt, Enlightenment, LXDE
 - Install a Window manager (3/10) (optional)
-    - i3wm, Openbox, Fluxbox, bspwm, herbstluftwm, IceWM, jwm, dwm, FVWM3
+    - i3wm, Openbox, Fluxbox, bspwm, herbstluftwm, IceWM, awesome, jwm, dwm, FVWM3
 - Install fonts (4/10) (optional)
 - Install an Internet browser (5/10) (optional)
 - Install LibreOffice (6/10) (optional)

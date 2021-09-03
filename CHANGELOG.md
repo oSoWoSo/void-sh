@@ -69,3 +69,15 @@ Fri 06 Aug 2021
 - Added xarchiver to Enlightenment and LXDE setup
 - Added German language pack to Firefox and Firefox ESR setup
 - Added German and American English language pack to LibreOffice setup
+
+Version 5.0 <br>
+Sun 29 Aug 2021
+
+- Added the awesome window manager
+- Network Manager Applet has been separated from the Network Manager setup
+- Blueman has been separated from the Bluetooth setup
+- system-config-printer has been separated from the Printer support setup
+- Added a system update check to the beginning of the script
+- Added missing package chrome-gnome-shell to GNOME setup
+- Added package NetworkManager-vpnc and NetworkManager-l2tp to Network Manager setup
+- Some bug fixes in the script
