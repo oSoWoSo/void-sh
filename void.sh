@@ -31,7 +31,17 @@ GREEN='\033[01;32m'
 RED='\033[01;31m'
 DEFAULT='\033[00m'
 
+# check if we have UID 0, exit otherwise
+rootcheck () {
+  if [[ $EUID -gt 0 ]]; then
+    echo -e  "${RED}This operation needs super-user privileges. Exiting.${DEFAULT}\n"
+    exit 255
+  fi
+}
+
 # Update the System
+
+rootcheck
 
 echo -e "\n${BLUE}Checking for updates...${DEFAULT}\n"
 
