@@ -49,4 +49,3 @@ and copy some configuration files.
 ### Notes
 
 - This program is not part of Void Linux.
-- This program was successfully tested and can be used on production systems.
