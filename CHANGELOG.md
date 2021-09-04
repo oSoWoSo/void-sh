@@ -81,3 +81,15 @@ Sun 29 Aug 2021
 - Added missing package chrome-gnome-shell to GNOME setup
 - Added package NetworkManager-vpnc and NetworkManager-l2tp to Network Manager setup
 - Some bug fixes in the script
+
+Version 6.0 <br>
+Sat 4 Sep 2021
+
+- Added linux-headers to recommended packages
+- The installation of development tools is now optional
+- Added optipng and sassc to development tools
+- Added Lumina Desktop
+- Added Sway and Wayfire Window Managers
+- Added an option to install Backup programs
+- Added an option to install a Video player
+- Some corrections

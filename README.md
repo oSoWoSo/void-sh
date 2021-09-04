@@ -7,20 +7,24 @@ void-sh is a program written in Bash that configures Void Linux.
 - Update the system
 - Install recommended packages
 - Install development packages
-- Install the X Window System (1/11) (optional)
-- Install a Desktop environment (2/11) (optional)
-    - Xfce, MATE, GNOME, KDE Plasma, Budgie, Cinnamon, LXQt, Enlightenment, LXDE
-- Install Display Manager (3/11) (optional)
+- Install the X Window System (1/13) (optional)
+- Install a Desktop environment (2/13) (optional)
+    - Xfce, MATE, GNOME, KDE Plasma, Budgie, Cinnamon, LXQt, Enlightenment,
+	- LXDE, Lumina
+- Install Display Manager (3/13) (optional)
     - LightDM, emptty, slim
-- Install a Window manager (4/11) (optional)
-    - i3wm, Openbox, Fluxbox, bspwm, herbstluftwm, IceWM, awesome, jwm, dwm, FVWM3
-- Install fonts (5/11) (optional)
-- Install an Internet browser (6/11) (optional)
-- Install LibreOffice (7/11) (optional)
-- Install GIMP + Inkscape (8/11) (optional)
-- Install QEMU + Virt Manager (9/11) (optional)
-- Install a Terminal emulator (10/11) (optional)
-- Enable required services (11/11)
+- Install a Window manager (4/13) (optional)
+    - i3wm, Openbox, Fluxbox, bspwm, herbstluftwm, IceWM, awesome, jwm, dwm, FVWM3,
+	- Wayfire, Sway
+- Install fonts (5/13) (optional)
+- Install an Internet browser (6/13) (optional)
+- Install LibreOffice (7/13) (optional)
+- Install GIMP + Inkscape (8/13) (optional)
+- Install QEMU + Virt Manager (9/13) (optional)
+- Install a Terminal emulator (10/13) (optional)
+- Install a Backup program (11/13)
+- Install a Video player (12/13)
+- Enable required services (13/13)
 - Configure Cron
 - Configure Audio (optional)
 - Configure Network Management (optional)
