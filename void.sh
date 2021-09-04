@@ -379,8 +379,8 @@ case $xwinsys in
 	- 9 dwm
 	- 10 FVWM3
 	--- Wayland ---
-	- 11 Sway
-	- 12 Wayfire
+	- 11 Sway (not working at the moment)
+	- 12 Wayfire (not working at the moment)
 	- 0 none\n"
 
 	read -p "Which Window manager do you want? " windowmanager
