@@ -50,7 +50,7 @@ Please make sure git is installed: <br><br>
 Then run: <br><br>
 `git clone https://codeberg.org/fossraven/void-sh.git` <br>
 `cd void-sh` <br>
-`sudo sh void.sh`
+`sh void.sh`
 
 ### Notes
 
