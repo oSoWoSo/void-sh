@@ -202,7 +202,7 @@ case $xwinsys in
 			mate-settings-daemon mate-system-monitor mate-terminal mate-themes mate-tweak mate-utils \
 			mozo pluma caja caja-image-converter caja-sendto caja-open-terminal caja-wallpaper \
 			caja-xattr-tags eom atril gvfs gvfs-mtp gvfs-gphoto2 engrampa mate-power-manager mate-polkit
-		
+
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"	
@@ -218,7 +218,7 @@ case $xwinsys in
 			evince gedit gedit-plugins gnome-video-effects gnome-themes-extra gnome-session gnome-screenshot \
 			gnome-shell-extensions gnome-icon-theme gnome-icon-theme-extras gnome-icon-theme-symbolic \
 			gnome-backgrounds file-roller chrome-gnome-shell totem
-		
+
 		echo -n "$blue"
 		echo "GNOME Applications"
 		echo "Includes: GNOME Calendar, GNOME Clocks, GNOME Weather, Evolution, GNOME Font Viewer,"
@@ -236,17 +236,17 @@ case $xwinsys in
 				gnome-calculator gnome-characters gnome-contacts gnome-documents gnome-maps
 
 			;;
-		
+
 			n )
 
 			;;
 		esac
-		
+
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
 		;;
-		
+
 		4 )
 		echo -n "$blue"
 		echo "Install KDE Plasma..."
@@ -319,7 +319,7 @@ case $xwinsys in
 		echo -n "$none"
 		sudo xbps-install cinnamon gnome-system-monitor gnome-terminal gnome-screenshot gnome-disk-utility \
 			gnome-keyring gedit gedit-plugins evince gvfs gvfs-mtp gvfs-gphoto2 eog eog-plugins file-roller
-		
+
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -375,8 +375,8 @@ case $xwinsys in
 		;;
 		
 		0 ) 
-			
 		;;
+
 	esac
 
 	# Install display manager
@@ -389,7 +389,7 @@ case $xwinsys in
 	- 2 Emptty
 	- 3 Slim
 	- 0 none\n"
-	
+
 	read -p "Which display manager do you want? " displaymanager
 	case $displaymanager in
 		1 )
@@ -397,12 +397,12 @@ case $xwinsys in
 		echo "Install Lightdm..."		
 		echo -n "$none"		
 		sudo xbps-install lightdm lightdm-gtk3-greeter lightdm-gtk-greeter-settings
-		
+
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"			
 		;;
-		
+
 		2 )
 		echo -n "$blue"
 		echo "Install Emptty..."		
@@ -424,10 +424,10 @@ case $xwinsys in
 		echo "Done"
 		echo -n "$none"					
 		;;
-		
+
 		0 ) 
-			
 		;;
+
 	esac
 
 	# Install a Window manager
@@ -474,12 +474,11 @@ case $xwinsys in
 		sudo xbps-install openbox obconf lxappearance lxappearance-obconf jgmenu dunst \
 			feh lxterminal lxrandr lxinput pcmanfm gvfs gvfs-mtp gvfs-gphoto2 \
 			mousepad lxtask scrot htop xarchiver viewnior
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
 		;;
-		
+
 		3 )
 		echo -n "$blue"
 		echo "Install Fluxbox..."
@@ -487,7 +486,6 @@ case $xwinsys in
 		sudo xbps-install fluxbox dunst feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad xfce4-terminal scrot htop xarchiver \
 		        viewnior
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -499,7 +497,6 @@ case $xwinsys in
 		echo -n "$none"
 		sudo xbps-install bspwm sxhkd dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -511,7 +508,6 @@ case $xwinsys in
 		echo -n "$none"
 		sudo xbps-install herbstluftwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -523,7 +519,6 @@ case $xwinsys in
 		echo -n "$none"
 		sudo xbps-install icewm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -536,7 +531,6 @@ case $xwinsys in
 		sudo xbps-install awesome vicious dunst feh arandr xfce4-terminal Thunar thunar-volman \
 				thunar-archive-plugin thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot \
 				htop xarchiver viewnior
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -548,7 +542,6 @@ case $xwinsys in
 		echo -n "$none"
 		sudo xbps-install jwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -560,7 +553,6 @@ case $xwinsys in
 		echo -n "$none"
 		sudo xbps-install dwm dunst feh dmenu xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -572,7 +564,6 @@ case $xwinsys in
 		echo -n "$none"
 		sudo xbps-install fvwm3 feh xfce4-terminal arandr Thunar thunar-volman thunar-archive-plugin \
 			thunar-media-tags-plugin gvfs gvfs-mtp gvfs-gphoto2 mousepad scrot htop xarchiver viewnior
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -584,7 +575,6 @@ case $xwinsys in
 		echo -n "$none"
 		sudo xbps-install sway swaybg swayidle swaylock azote grimshot Waybar gvfs gvfs-mtp gvfs-gphoto2 \
 				htop wofi
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -595,7 +585,6 @@ case $xwinsys in
 		echo "Install Wayfire..."
 		echo -n "$none"
 		sudo xbps-install wayfire grim gvfs gvfs-mtp gvfs-gphoto2 htop wofi
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -616,15 +605,14 @@ case $xwinsys in
 		echo -n "$none"
 		sudo xbps-install liberation-fonts-ttf dejavu-fonts-ttf \
 			ttf-ubuntu-font-family fonts-roboto-ttf
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"			
 		;;
-		
+
 		n ) 
-			
 		;;
+
 	esac
 
 	# Install an Internet browser
@@ -647,10 +635,9 @@ case $xwinsys in
 		echo "Install Firefox..."
 		echo -n "$none"
 		sudo xbps-install firefox firefox-i18n-en-US firefox-i18n-de
-
 		echo -n "$green"
 		echo "Done"
-		echo -n "$none"			
+		echo -n "$none"
 		;;
 
 		2 ) 
@@ -658,10 +645,9 @@ case $xwinsys in
 		echo "Install Firefox Extended Support Release..."
 		echo -n "$none"
 		sudo xbps-install firefox-esr firefox-esr-i18n-en-US firefox-esr-i18n-de
-
 		echo -n "$green"
 		echo "Done"
-		echo -n "$none"			
+		echo -n "$none"
 		;;
 
 		3 ) 
@@ -669,10 +655,9 @@ case $xwinsys in
 		echo "Install Chromium..."
 		echo -n "$none"
 		sudo xbps-install chromium
-
 		echo -n "$green"
 		echo "Done"
-		echo -n "$none"			
+		echo -n "$none"
 		;;
 
 		4 )
@@ -680,7 +665,6 @@ case $xwinsys in
 		echo "Install qutebrowser..."
 		echo -n "$none"
 		sudo xbps-install qutebrowser
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
@@ -691,27 +675,24 @@ case $xwinsys in
 		echo "Install Falkon..."
 		echo -n "$none"
 		sudo xbps-install falkon
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
 		;;
-		
-		0 ) 
-			
-		;;
-		
+
 		6 )
 		echo -n "$blue"
 		echo "Install Badwolf..."
 		echo -n "$none"
 		sudo xbps-install badwolf
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
 		;;
-		
+
+		0 ) 
+		;;
+
 	esac
 
 	# Install LibreOffice
@@ -725,15 +706,14 @@ case $xwinsys in
 		sudo xbps-install libreoffice-writer libreoffice-calc libreoffice-impress \
 			libreoffice-draw libreoffice-math libreoffice-base libreoffice-gnome \
 			libreoffice-i18n-en-US libreoffice-i18n-de
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
 		;;
 
 		n )
-
 		;;
+
 	esac
 
 	# Install GIMP + Inkscape
@@ -745,15 +725,14 @@ case $xwinsys in
 		echo "Install GIMP and Inkscape..."
 		echo -n "$none"
 		sudo xbps-install inkscape gimp
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"
 		;;
 
 		n )
-
 		;;
+
 	esac
 
 	# Install QEMU + Virt Manager
@@ -777,12 +756,11 @@ case $xwinsys in
 			echo -n "$green"
 			echo "Done"
 		fi
-
 		;;
 
 		n )
-
 		;;
+
 	esac
 
 	# Install a Terminal emulator
@@ -807,7 +785,6 @@ case $xwinsys in
 		sudo xbps-install alacritty alacritty-terminfo
 		export TERMINAL="alacritty"
 		printf TERM="alacritty" > ~/.bashrc
-	
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"			
@@ -820,7 +797,6 @@ case $xwinsys in
 		sudo xbps-install xterm
 		export TERMINAL="xterm"
 		printf TERM="xterm" > ~/.bashrc
-
 		echo -n "$green"
 		echo "Done"
 		echo -n "$none"			
