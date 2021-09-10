@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Original author: fossraven
+# SRC: https://codeberg.org/fossraven/void-sh
+# Some changes: oSoWoSo
+# SRC site: https://codeberg.org/oSoWoSo
+
+
 #
 # - Update the system
 # - Install recommended packages
