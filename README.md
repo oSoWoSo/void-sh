@@ -12,6 +12,7 @@ Don't run as ROOT you will be asked for password if needed!
 - Install a other Shell and make it default (optional)
     - Fish, Zsh
 - Install the X Window System (optional)
+- Choose X keyboard layout
 - Install a Desktop environment (3/13) (optional)
 	- Xfce, MATE, GNOME, KDE Plasma, Budgie, Cinnamon, LXQt, Enlightenment,
 	- LXDE, Lumina
@@ -50,7 +51,7 @@ Please make sure git is installed: <br><br>
 Then run: <br><br>
 `git clone https://codeberg.org/fossraven/void-sh.git` <br>
 `cd void-sh` <br>
-`sh void.sh`
+`sudo sh void.sh`
 
 ### Notes
 

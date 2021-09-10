@@ -136,8 +136,8 @@ case $xwinsys in
 		sudo mkdir -p /etc/X11/xorg.conf.d
 	fi
 
-	sudo cp -r 00-keyboard.conf /etc/X11/xorg.conf.d/
-	sudo cp -r 20-libinput.conf /etc/X11/xorg.conf.d/
+	sudo cp -r keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+	sudo cp -r libinput.conf /etc/X11/xorg.conf.d/20-libinput.conf
 
 	echo -n "$green"
 	echo "Done"
